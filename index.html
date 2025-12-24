@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth scroll-pt-20">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Akshaf | Mechanical Design Engineer</title> <!-- EDIT THIS: Your Name -->
+    <meta name="description" content="Portfolio of John Doe, a Mechanical Design Engineer specializing in CAD, FEA, and DFM.">
+    <title>John Doe | Mechanical Design Engineer</title> <!-- EDIT THIS: Your Name -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -102,7 +103,7 @@
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden md:flex space-x-8 items-center">
                     <a href="#work" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Projects</a>
                     <a href="#skills" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Competencies</a>
                     <a href="#about" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Experience</a>
@@ -111,7 +112,7 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-stone-900 focus:outline-none">
+                    <button id="mobile-menu-btn" aria-label="Toggle menu" class="text-stone-600 hover:text-stone-900 focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -146,7 +147,7 @@
                     <a href="#work" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-stone-900 hover:bg-accent transition-all shadow-lg hover:shadow-xl">
                         View Portfolio
                     </a>
-                    <a href="#" target="_blank" class="inline-flex justify-center items-center px-8 py-3 border border-stone-300 text-base font-medium rounded-lg text-stone-700 bg-white hover:bg-stone-50 transition-all">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-8 py-3 border border-stone-300 text-base font-medium rounded-lg text-stone-700 bg-white hover:bg-stone-50 transition-all">
                         <i class="fas fa-file-pdf mr-2"></i> Resume
                     </a>
                 </div>
@@ -169,10 +170,7 @@
                 <!-- Project Card 1: Robotics/Mechatronics -->
                 <article class="group bg-stone-50 rounded-xl overflow-hidden border border-stone-200 hover:border-accent/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
                     <div class="h-48 bg-stone-200 relative overflow-hidden group-hover:opacity-90 transition-opacity">
-                        <!-- Placeholder Image -->
-                        <div class="absolute inset-0 flex items-center justify-center text-stone-400 bg-stone-100">
-                            <i class="fas fa-robot text-4xl"></i> 
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" alt="Robotic Arm" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-4">
@@ -195,9 +193,7 @@
                 <!-- Project Card 2: Thermal/Analysis -->
                 <article class="group bg-stone-50 rounded-xl overflow-hidden border border-stone-200 hover:border-accent/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
                     <div class="h-48 bg-stone-200 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-stone-400 bg-stone-100">
-                            <i class="fas fa-temperature-high text-4xl"></i>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Thermal Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-4">
@@ -220,9 +216,7 @@
                 <!-- Project Card 3: Manufacturing/Tooling -->
                 <article class="group bg-stone-50 rounded-xl overflow-hidden border border-stone-200 hover:border-accent/50 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
                     <div class="h-48 bg-stone-200 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-stone-400 bg-stone-100">
-                            <i class="fas fa-cogs text-4xl"></i>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&q=80&w=800" alt="Injection Mold Tooling" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-4">
