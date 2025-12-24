@@ -188,17 +188,38 @@
         <!-- Radial Gradient Overlay to soften edges -->
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fafaf9]"></div>
         
+        <!-- DECORATIVE: 3D Cube Animation (Utilizing the unused CSS) -->
+        <div class="absolute top-20 right-[5%] opacity-10 pointer-events-none hidden lg:block z-0">
+            <div class="scene scale-125">
+                <div class="cube">
+                    <div class="cube__face cube__face--front">CAD</div>
+                    <div class="cube__face cube__face--back">FEA</div>
+                    <div class="cube__face cube__face--right">DFM</div>
+                    <div class="cube__face cube__face--left">GD&T</div>
+                    <div class="cube__face cube__face--top">MFG</div>
+                    <div class="cube__face cube__face--bottom">BOM</div>
+                </div>
+            </div>
+        </div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 
                 <!-- Left Column: Text -->
                 <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-mono font-bold mb-6 animate-fade-up border border-accent/20">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                        </span>
+                        AVAILABLE FOR HIRE
+                    </div>
                     <h1 class="text-5xl md:text-7xl font-bold text-stone-900 tracking-tight mb-6 animate-fade-up delay-100 leading-tight">
-                        I turn complex concepts into <br>
-                        <span class="text-stone-400">robust physical systems.</span>
+                        Engineering <span class="text-accent">Production-Ready</span> <br>
+                        Physical Systems.
                     </h1>
                     <p class="text-xl text-stone-600 mb-8 max-w-lg animate-fade-up delay-200 leading-relaxed">
-                        Mechanical Design Engineer specializing in CAD, FEA simulation, and Design for Manufacturing (DFM).
+                        Mechanical Design Engineer bridging the gap between <span class="font-semibold text-stone-900">conceptual design</span> and <span class="font-semibold text-stone-900">mass manufacturing</span>. Specializing in CAD, FEA, and DFM.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 animate-fade-up delay-300">
                         <a href="#work" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-stone-900 hover:bg-accent transition-all shadow-lg hover:shadow-xl">
@@ -208,6 +229,22 @@
                             <i class="fas fa-file-pdf mr-2"></i> Resume
                         </a>
                     </div>
+
+                    <!-- Quick Stats / Social Proof -->
+                    <div class="mt-10 pt-8 border-t border-stone-200 flex gap-8 animate-fade-up delay-300">
+                        <div>
+                            <p class="text-2xl font-bold text-stone-900">CSWP</p>
+                            <p class="text-xs text-stone-500 uppercase tracking-wide">Certified</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-stone-900">15+</p>
+                            <p class="text-xs text-stone-500 uppercase tracking-wide">Projects</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-stone-900">100%</p>
+                            <p class="text-xs text-stone-500 uppercase tracking-wide">DFM Focus</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Right Column: Rover Image -->
@@ -216,7 +253,17 @@
                     <div class="absolute -inset-4 bg-sky-200/50 rounded-full blur-3xl opacity-70"></div>
                     
                     <!-- Image Container -->
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-all duration-500">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-all duration-500 group bg-stone-100">
+                        <!-- CAD Overlay UI (Decorative) -->
+                        <div class="absolute top-4 left-4 z-20 flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
+                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
+                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
+                        </div>
+                        <div class="absolute top-4 right-4 z-20 bg-stone-900/80 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-stone-700">
+                            VIEW: ISOMETRIC
+                        </div>
+
                         <!-- YOUR ROVER IMAGE -->
                         <img 
                             src="./rover.png" 
