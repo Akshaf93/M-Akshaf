@@ -1,36 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth scroll-pt-20">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of John Doe, a Mechanical Design Engineer specializing in CAD, FEA, and DFM.">
-    <title>John Doe | Mechanical Design Engineer</title> <!-- EDIT THIS: Your Name -->
+    <title>John Doe | Mechanical Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom Config for Tailwind Colors -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        stone: {
-                            50: '#fafaf9',
-                            100: '#f5f5f4',
-                            800: '#292524',
-                            900: '#1c1917',
-                        },
-                        // "Blueprint Blue" Accent for Engineering
-                        accent: {
-                            light: '#38bdf8', /* Sky 400 */
-                            DEFAULT: '#0284c7', /* Sky 600 */
-                            dark: '#0369a1', /* Sky 700 */
-                        }
+                        black: '#050505',
+                        white: '#ffffff',
+                        accent: '#3b82f6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        mono: ['Roboto Mono', 'monospace'],
+                        display: ['Oswald', 'sans-serif'], /* Tall, condensed font like Diegator */
+                    },
+                    fontSize: {
+                        'massive': '18vw',
                     }
                 }
             }
@@ -38,628 +31,249 @@
     </script>
     
     <style>
-        /* Import Inter & Roboto Mono Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Oswald:wght@500;700&display=swap');
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fafaf9; /* Stone-50 */
-            color: #1c1917; /* Stone-900 */
+            background-color: #050505;
+            color: #ffffff;
+            cursor: none; /* We will use a custom cursor */
         }
 
-        /* --- NEW: Technical Grid Background Animation --- */
-        .bg-tech-grid {
-            background-size: 50px 50px;
-            background-image: 
-                linear-gradient(to right, rgba(2, 132, 199, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(2, 132, 199, 0.05) 1px, transparent 1px);
-            animation: panGrid 60s linear infinite;
+        /* Custom Cursor */
+        #cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        #cursor.hovered {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            opacity: 0.1;
         }
 
-        @keyframes panGrid {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 50px; }
-        }
-
-        /* --- NEW: 3D Wireframe Cube (Pure CSS) --- */
-        .scene {
-            width: 200px;
-            height: 200px;
-            perspective: 600px;
-        }
-        .cube {
+        /* Smooth Scroll Container */
+        .smooth-wrapper {
             width: 100%;
             height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotateCube 20s infinite linear;
-        }
-        .cube__face {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(2, 132, 199, 0.3); /* Accent color border */
-            background: rgba(2, 132, 199, 0.02);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 10px;
-            color: rgba(2, 132, 199, 0.5);
-        }
-        /* Face positioning */
-        .cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
-        .cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
-        .cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
-        .cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
-        .cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-        .cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-        @keyframes rotateCube {
-            0% { transform: rotateX(-15deg) rotateY(0deg); }
-            100% { transform: rotateX(-15deg) rotateY(360deg); }
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Typography Utilities */
+        .outline-text {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            color: transparent;
+            transition: all 0.5s ease;
         }
-        ::-webkit-scrollbar-track {
-            background: #f5f5f4;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d6d3d1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a29e;
+        .group:hover .outline-text {
+            -webkit-text-stroke: 0px;
+            color: #3b82f6; /* Accent color on hover */
         }
 
-        /* Animations */
-        @keyframes fade-in-up {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-up {
-            animation: fade-in-up 0.8s ease-out forwards;
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-
-        /* Chart Container Constraint */
-        .chart-wrapper {
-            position: relative;
-            height: 300px;
-            width: 100%;
-            max-width: 100%;
+        /* Image Parallax Container */
+        .parallax-container {
+            clip-path: inset(0 0 0 0);
         }
     </style>
 </head>
-<body class="antialiased selection:bg-accent selection:text-white">
+<body class="overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-stone-50/80 backdrop-blur-md border-b border-stone-200/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo / Name -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-xl font-bold tracking-tight text-stone-900 group">
-                        <i class="fas fa-cog text-accent group-hover:rotate-90 transition-transform duration-700"></i> John Doe <!-- EDIT THIS -->
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#work" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Projects</a>
-                    <a href="#skills" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Competencies</a>
-                    <a href="#about" class="text-sm font-medium text-stone-600 hover:text-accent transition-colors">Experience</a>
-                    <a href="#contact" class="px-4 py-2 text-sm font-medium text-white bg-stone-900 rounded-lg hover:bg-accent transition-colors">Contact Me</a>
-                </div>
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-stone-600 hover:text-stone-900 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-stone-50 border-t border-stone-200">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#work" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:bg-stone-100 hover:text-accent">Projects</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:bg-stone-100 hover:text-accent">Competencies</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-stone-700 hover:bg-stone-100 hover:text-accent">Experience</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-accent font-bold">Contact Me</a>
-            </div>
+    <!-- Fixed Header -->
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
+        <a href="#" class="font-display font-bold text-xl tracking-widest cursor-hover">JOHN DOE™</a>
+        <div class="flex gap-8">
+            <a href="#work" class="font-sans text-sm font-medium hover:text-gray-300 cursor-hover">WORK</a>
+            <a href="mailto:email@example.com" class="font-sans text-sm font-medium hover:text-gray-300 cursor-hover">CONTACT</a>
         </div>
     </nav>
 
-    <!-- NEW HERO SECTION -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-tech-grid border-b border-stone-200">
-        <!-- Radial Gradient Overlay to soften edges -->
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#fafaf9]"></div>
-        
-        <!-- DECORATIVE: 3D Cube Animation (Utilizing the unused CSS) -->
-        <div class="absolute top-20 right-[5%] opacity-10 pointer-events-none hidden lg:block z-0">
-            <div class="scene scale-125">
-                <div class="cube">
-                    <div class="cube__face cube__face--front">CAD</div>
-                    <div class="cube__face cube__face--back">FEA</div>
-                    <div class="cube__face cube__face--right">DFM</div>
-                    <div class="cube__face cube__face--left">GD&T</div>
-                    <div class="cube__face cube__face--top">MFG</div>
-                    <div class="cube__face cube__face--bottom">BOM</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <!-- Left Column: Text -->
-                <div class="max-w-2xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-stone-700 text-xs font-medium mb-6 animate-fade-up border border-stone-200 shadow-sm">
-                        <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        Available for New Opportunities
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-bold text-stone-900 tracking-tight mb-6 animate-fade-up delay-100 leading-tight">
-                        Engineering <span class="text-accent">Production-Ready</span> <br>
-                        Physical Systems.
-                    </h1>
-                    <p class="text-xl text-stone-600 mb-8 max-w-lg animate-fade-up delay-200 leading-relaxed">
-                        Mechanical Design Engineer bridging the gap between <span class="font-semibold text-stone-900">conceptual design</span> and <span class="font-semibold text-stone-900">mass manufacturing</span>. Specializing in CAD, FEA, and DFM.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 animate-fade-up delay-300">
-                        <a href="#work" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-stone-900 hover:bg-accent transition-all shadow-lg hover:shadow-xl">
-                            View Portfolio
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center px-8 py-3 border border-stone-300 text-base font-medium rounded-lg text-stone-700 bg-white hover:bg-stone-50 transition-all">
-                            <i class="fas fa-file-pdf mr-2"></i> Resume
-                        </a>
-                    </div>
-
-                    <!-- Quick Stats / Social Proof -->
-                    <div class="mt-10 pt-8 border-t border-stone-200 flex gap-12 animate-fade-up delay-300">
-                        <div class="group/stat">
-                            <p class="text-3xl font-bold text-stone-900 group-hover/stat:text-accent transition-colors">CSWP</p>
-                            <p class="text-xs text-stone-500 font-medium uppercase tracking-wider mt-1">SolidWorks Certified</p>
-                        </div>
-                        <div class="group/stat">
-                            <p class="text-3xl font-bold text-stone-900 group-hover/stat:text-accent transition-colors">15+</p>
-                            <p class="text-xs text-stone-500 font-medium uppercase tracking-wider mt-1">Builds Completed</p>
-                        </div>
-                        <div class="group/stat">
-                            <p class="text-3xl font-bold text-stone-900 group-hover/stat:text-accent transition-colors">100%</p>
-                            <p class="text-xs text-stone-500 font-medium uppercase tracking-wider mt-1">DFM Oriented</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Rover Image -->
-                <div class="hidden lg:block relative animate-fade-up delay-300">
-                    <!-- Decorative Background Blob (Blue to match your accent) -->
-                    <div class="absolute -inset-4 bg-sky-200/50 rounded-full blur-3xl opacity-70"></div>
-                    
-                    <!-- Image Container -->
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-100 group bg-stone-50">
-                        <!-- CAD Overlay UI (Decorative) -->
-                        <div class="absolute top-4 left-4 z-20 flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
-                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
-                            <div class="w-3 h-3 rounded-full bg-stone-300"></div>
-                        </div>
-                        <div class="absolute top-4 right-4 z-20 bg-stone-900/80 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white border border-stone-700">
-                            VIEW: ISOMETRIC
-                        </div>
-
-                        <!-- YOUR ROVER IMAGE -->
-                        <img 
-                            src="./rover.png" 
-                            alt="Autonomous Rover Prototype" 
-                            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
-                        >
-                        
-                        <!-- Floating Badge: SPECIFIC TO THE ROVER -->
-                        <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur px-4 py-2 rounded-lg shadow-lg border border-stone-100">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-accent/10 p-2 rounded-full text-accent">
-                                    <!-- Gear Icon -->
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-stone-500 font-mono uppercase">Featured Build</p>
-                                    <p class="text-sm font-bold text-stone-900">ASME Efx IAM3d Winning R.O.V.E.R</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Work / Projects Section -->
-    <section id="work" class="py-20 bg-white border-t border-stone-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-bold text-stone-900">Engineering Projects</h2>
-                    <p class="mt-2 text-stone-500">From initial sketch to final production.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Project Card 1: Robotics/Mechatronics -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-stone-100">
-                    <div class="h-48 bg-stone-200 relative overflow-hidden group-hover:opacity-90 transition-opacity">
-                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" alt="Robotic Arm" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        <!-- Hover Overlay -->
-                        <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="inline-flex items-center px-4 py-2 border border-white text-white text-sm font-medium rounded-lg backdrop-blur-sm">
-                                View Case Study <i class="fas fa-arrow-right ml-2"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition-colors">6-DOF Robotic Arm</h3>
-                            <div class="flex gap-3">
-                                <a href="#" class="text-stone-400 hover:text-stone-900" title="View CAD"><i class="fas fa-cube"></i></a>
-                            </div>
-                        </div>
-                        <p class="text-stone-600 text-sm mb-4 flex-1">
-                            Designed a high-precision robotic manipulator. Performed kinematic analysis to optimize reach and payload. Reduced joint weight by 20% through topology optimization.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded-md text-xs font-medium border border-sky-100">SolidWorks</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">3D Printing</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">Mechatronics</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project Card 2: Thermal/Analysis -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-stone-100">
-                    <div class="h-48 bg-stone-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="Thermal Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        <!-- Hover Overlay -->
-                        <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="inline-flex items-center px-4 py-2 border border-white text-white text-sm font-medium rounded-lg backdrop-blur-sm">
-                                View Case Study <i class="fas fa-arrow-right ml-2"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition-colors">EV Battery Cooling System</h3>
-                            <div class="flex gap-3">
-                                <a href="#" class="text-stone-400 hover:text-stone-900"><i class="fas fa-file-alt"></i></a>
-                            </div>
-                        </div>
-                        <p class="text-stone-600 text-sm mb-4 flex-1">
-                            Simulated fluid flow and heat transfer (CFD) for a battery pack. Improved heat dissipation by 15% while reducing pump power requirements.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded-md text-xs font-medium border border-sky-100">Ansys Fluent</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">Thermodynamics</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">MATLAB</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project Card 3: Manufacturing/Tooling -->
-                <article class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full border border-stone-100">
-                    <div class="h-48 bg-stone-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&q=80&w=800" alt="Injection Mold Tooling" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        <!-- Hover Overlay -->
-                        <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="inline-flex items-center px-4 py-2 border border-white text-white text-sm font-medium rounded-lg backdrop-blur-sm">
-                                View Case Study <i class="fas fa-arrow-right ml-2"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-stone-900 group-hover:text-accent transition-colors">Injection Mold Tooling</h3>
-                            <div class="flex gap-3">
-                                <a href="#" class="text-stone-400 hover:text-stone-900"><i class="fas fa-images"></i></a>
-                            </div>
-                        </div>
-                        <p class="text-stone-600 text-sm mb-4 flex-1">
-                            Designed a multi-cavity mold for a consumer electronics housing. Applied GD&T standards (ASME Y14.5) to ensure assembly fit and manufacturability.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="px-2.5 py-1 bg-sky-50 text-sky-700 rounded-md text-xs font-medium border border-sky-100">Creo</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">GD&T</span>
-                            <span class="px-2.5 py-1 bg-stone-100 text-stone-600 rounded-md text-xs font-medium border border-stone-200">DFM</span>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-            
-            <div class="mt-12 text-center">
-                <a href="#" class="text-stone-600 hover:text-accent font-medium inline-flex items-center">
-                    View Full Project Archive <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEW: Engineering Process Section (Inspired by Top Portfolios) -->
-    <section class="py-20 bg-stone-900 text-stone-300 border-t border-stone-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-white">My Engineering Process</h2>
-                <p class="mt-4 text-stone-400 max-w-2xl mx-auto">
-                    A systematic approach to solving complex physical problems, ensuring reliability from concept to production.
+    <!-- 
+        SECTION 1: THE STATEMENT (Typography)
+        Massive text that fills the screen.
+    -->
+    <section class="h-screen flex flex-col justify-center px-4 pt-20 relative">
+        <div class="flex flex-col leading-none">
+            <h1 class="font-display text-massive font-bold uppercase tracking-tighter" id="title-1">
+                MECHANICAL
+            </h1>
+            <div class="flex items-center gap-8">
+                <span class="h-[1px] bg-white flex-1 opacity-30"></span>
+                <p class="font-sans text-sm md:text-xl text-gray-400 max-w-md text-right">
+                    Designing hardware systems<br> for the physical world.
                 </p>
             </div>
+            <h1 class="font-display text-massive font-bold uppercase tracking-tighter text-right" id="title-2">
+                ENGINEER
+            </h1>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+            <span class="text-[10px] font-mono">SCROLL</span>
+            <div class="w-[1px] h-12 bg-white"></div>
+        </div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-                <!-- Connecting Line (Desktop) -->
-                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-stone-800 -z-10"></div>
-
-                <!-- Step 1 -->
-                <div class="relative group">
-                    <div class="w-24 h-24 mx-auto bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900 group-hover:border-accent transition-colors duration-300 z-10 relative">
-                        <i class="fas fa-search text-3xl text-white group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <h3 class="mt-6 text-xl font-bold text-white text-center">1. Define</h3>
-                    <p class="mt-2 text-sm text-stone-400 text-center">Requirements gathering, constraints analysis, and feasibility studies.</p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="relative group">
-                    <div class="w-24 h-24 mx-auto bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900 group-hover:border-accent transition-colors duration-300 z-10 relative">
-                        <i class="fas fa-pencil-ruler text-3xl text-white group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <h3 class="mt-6 text-xl font-bold text-white text-center">2. Design</h3>
-                    <p class="mt-2 text-sm text-stone-400 text-center">3D CAD modeling, component selection, and kinematic simulation.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="relative group">
-                    <div class="w-24 h-24 mx-auto bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900 group-hover:border-accent transition-colors duration-300 z-10 relative">
-                        <i class="fas fa-microchip text-3xl text-white group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <h3 class="mt-6 text-xl font-bold text-white text-center">3. Analyze</h3>
-                    <p class="mt-2 text-sm text-stone-400 text-center">FEA stress testing, thermal analysis (CFD), and tolerance stack-ups.</p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="relative group">
-                    <div class="w-24 h-24 mx-auto bg-stone-800 rounded-full flex items-center justify-center border-4 border-stone-900 group-hover:border-accent transition-colors duration-300 z-10 relative">
-                        <i class="fas fa-industry text-3xl text-white group-hover:text-accent transition-colors"></i>
-                    </div>
-                    <h3 class="mt-6 text-xl font-bold text-white text-center">4. Build</h3>
-                    <p class="mt-2 text-sm text-stone-400 text-center">Prototyping, DFM optimization, and mass production tooling.</p>
-                </div>
+    <!-- 
+        SECTION 2: THE REVEAL (Full Width Image)
+        Just like Diegator, the image takes over.
+    -->
+    <section class="w-full relative z-10 py-20">
+        <div class="w-full h-[80vh] md:h-[120vh] overflow-hidden relative parallax-container">
+            <!-- ROVER IMAGE -->
+            <img 
+                src="./rover.png
+                alt="Rover Prototype" 
+                class="absolute inset-0 w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-1000 ease-out cursor-hover"
+                data-speed="0.5" /* Parallax Speed */
+            >
+            
+            <!-- Overlay Text -->
+            <div class="absolute bottom-10 left-10 md:bottom-20 md:left-20 z-20 mix-blend-difference">
+                <h2 class="font-display text-6xl md:text-8xl font-bold uppercase">The Rover</h2>
+                <p class="font-sans text-lg mt-2 tracking-wide">6-WHEEL AUTONOMOUS PLATFORM</p>
             </div>
         </div>
     </section>
 
-    <!-- Skills & Chart Section -->
-    <section id="skills" class="py-20 bg-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                
-                <!-- Text Content -->
-                <div>
-                    <h2 class="text-3xl font-bold text-stone-900 mb-6">Technical Competencies</h2>
-                    <p class="text-stone-600 mb-8 leading-relaxed">
-                        My expertise lies in the intersection of design, analysis, and manufacturing. I focus on creating designs that are not only functional but also cost-effective and manufacturable at scale.
-                    </p>
+    <!-- 
+        SECTION 3: SELECTED WORKS (The Grid)
+        High contrast, large typography.
+    -->
+    <section id="work" class="py-20 px-4 md:px-10 bg-black z-20 relative">
+        <div class="border-t border-white/20 mb-10"></div>
+        
+        <div class="flex justify-between items-end mb-20">
+            <h3 class="font-sans text-sm text-gray-400">(02) SELECTED WORKS</h3>
+            <h3 class="font-sans text-sm text-gray-400">2023 — 2025</h3>
+        </div>
 
-                    <div class="space-y-6">
-                        <!-- Skill Category -->
-                        <div>
-                            <h3 class="text-sm font-bold text-stone-400 uppercase tracking-wider mb-3">Design & Analysis</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium"><i class="fas fa-cube text-accent mr-2"></i>SolidWorks (CSWP)</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">Ansys FEA/CFD</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">MATLAB/Simulink</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">AutoCAD</span>
-                            </div>
-                        </div>
-
-                        <!-- Skill Category -->
-                        <div>
-                            <h3 class="text-sm font-bold text-stone-400 uppercase tracking-wider mb-3">Manufacturing & Testing</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">GD&T (ASME Y14.5)</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">CNC Machining</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">3D Printing (SLA/FDM)</span>
-                                <span class="px-3 py-2 bg-white border border-stone-200 shadow-sm rounded-md text-stone-700 font-medium">Rapid Prototyping</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Visualization -->
-                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200">
-                    <h3 class="text-lg font-bold text-stone-900 mb-4">Skill Distribution</h3>
-                    <div class="chart-wrapper">
-                        <!-- Canvas for Chart.js -->
-                        <canvas id="skillsChart"></canvas>
-                    </div>
-                    <p class="text-xs text-stone-400 mt-4 text-center">
-                        *Relative proficiency and project focus.
+        <!-- Project List -->
+        <div class="flex flex-col">
+            
+            <!-- Project Item 1 -->
+            <div class="group py-12 border-b border-white/20 cursor-hover relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-baseline justify-between relative z-10">
+                    <h2 class="font-display text-6xl md:text-8xl font-bold uppercase outline-text group-hover:translate-x-4 transition-transform duration-500">
+                        Suspension
+                    </h2>
+                    <p class="font-sans text-sm md:text-lg text-gray-400 mt-4 md:mt-0 group-hover:text-white transition-colors">
+                        KINEMATIC ANALYSIS / FEA
                     </p>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience / About Section -->
-    <section id="about" class="py-20 bg-white border-t border-stone-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-stone-900 mb-12 text-center">Professional Experience</h2>
-            
-            <div class="relative border-l-2 border-stone-200 ml-4 md:ml-6 space-y-12">
-                <!-- Job Item 1 -->
-                <div class="relative pl-8 md:pl-12">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-accent border-4 border-white shadow-sm"></div>
-                    
-                    <div class="bg-stone-50 p-6 rounded-xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-stone-900">Mechanical Design Engineer</h3>
-                                <h4 class="text-accent font-medium">Apex Robotics Systems</h4>
-                            </div>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-stone-200 text-stone-700 mt-2 sm:mt-0">2023 - Present</span>
-                        </div>
-                        <ul class="list-disc list-outside ml-4 text-stone-600 space-y-2 text-sm">
-                            <li>Led the mechanical design of the "Series-X" autonomous rover chassis.</li>
-                            <li>Coordinated with electrical teams to integrate motors and sensors within tight packaging constraints.</li>
-                            <li>Reduced BOM cost by 18% through vendor consolidation and material selection changes.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job Item 2 -->
-                <div class="relative pl-8 md:pl-12">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-stone-300 border-4 border-white shadow-sm"></div>
-                    
-                    <div class="bg-stone-50 p-6 rounded-xl border border-stone-100 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-stone-900">Manufacturing Engineer Intern</h3>
-                                <h4 class="text-stone-500 font-medium">Global Automotive Corp.</h4>
-                            </div>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-stone-200 text-stone-700 mt-2 sm:mt-0">2021 - 2023</span>
-                        </div>
-                        <ul class="list-disc list-outside ml-4 text-stone-600 space-y-2 text-sm">
-                            <li>Designed jigs and fixtures to improve assembly line throughput by 12%.</li>
-                            <li>Conducted root cause analysis (5 Whys) for component failures on the line.</li>
-                            <li>Assisted in setting up CNC toolpaths for prototype parts.</li>
-                        </ul>
-                    </div>
+                <!-- Hover Image Reveal (Optional - keeps it clean) -->
+                <div class="absolute top-0 right-0 w-1/3 h-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                    <img src="./image_b6da41.jpg" class="w-full h-full object-cover grayscale">
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-stone-900 text-stone-300">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-6">Let's build the future.</h2>
-            <p class="text-xl text-stone-400 mb-10 max-w-2xl mx-auto">
-                I'm currently looking for opportunities in product design and R&D.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="mailto:email@example.com" class="inline-flex justify-center items-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg text-stone-900 bg-accent hover:bg-accent-light transition-all shadow-lg hover:shadow-accent/20">
-                    <i class="fas fa-envelope mr-3"></i> Get in Touch
-                </a>
-                <a href="#" class="inline-flex justify-center items-center px-8 py-4 border border-stone-700 text-lg font-medium rounded-lg text-white hover:bg-stone-800 transition-all">
-                    <i class="fab fa-linkedin mr-3"></i> LinkedIn
-                </a>
+            <!-- Project Item 2 -->
+            <div class="group py-12 border-b border-white/20 cursor-hover relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-baseline justify-between relative z-10">
+                    <h2 class="font-display text-6xl md:text-8xl font-bold uppercase outline-text group-hover:translate-x-4 transition-transform duration-500">
+                        Drivetrain
+                    </h2>
+                    <p class="font-sans text-sm md:text-lg text-gray-400 mt-4 md:mt-0 group-hover:text-white transition-colors">
+                        GEARBOX DESIGN / MOTORS
+                    </p>
+                </div>
+                <div class="absolute top-0 right-0 w-1/3 h-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                    <img src="./image_b6d9e8.jpg" class="w-full h-full object-cover grayscale">
+                </div>
             </div>
-            
-            <footer class="mt-20 pt-8 border-t border-stone-800 text-sm text-stone-500">
-                <p>&copy; 2025 John Doe. Engineered with Code.</p>
-            </footer>
+
+            <!-- Project Item 3 -->
+            <div class="group py-12 border-b border-white/20 cursor-hover relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-baseline justify-between relative z-10">
+                    <h2 class="font-display text-6xl md:text-8xl font-bold uppercase outline-text group-hover:translate-x-4 transition-transform duration-500">
+                        Electronics
+                    </h2>
+                    <p class="font-sans text-sm md:text-lg text-gray-400 mt-4 md:mt-0 group-hover:text-white transition-colors">
+                        PCB ENCLOSURE / THERMAL
+                    </p>
+                </div>
+                <div class="absolute top-0 right-0 w-1/3 h-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none">
+                    <img src="./image_b6da1e.jpg" class="w-full h-full object-cover grayscale">
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- JavaScript Logic -->
+    <!-- 
+        SECTION 4: FOOTER / CONTACT
+        Simple and huge.
+    -->
+    <section class="h-[50vh] flex flex-col justify-center px-4 md:px-10 border-t border-white/20">
+        <h3 class="font-sans text-sm text-gray-400 mb-8">(03) CONTACT</h3>
+        <a href="mailto:email@example.com" class="font-display text-[8vw] leading-none font-bold uppercase hover:text-accent transition-colors cursor-hover">
+            Let's Build<br>The Future.
+        </a>
+        <div class="flex justify-between items-end mt-auto pb-10">
+            <p class="font-sans text-sm text-gray-500">SAN FRANCISCO, CA</p>
+            <div class="flex gap-6">
+                <a href="#" class="font-sans text-sm hover:underline cursor-hover">LINKEDIN</a>
+                <a href="#" class="font-sans text-sm hover:underline cursor-hover">GITHUB</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Animations -->
     <script>
-        // --- 1. Mobile Menu Logic ---
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        // Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
+        // 1. Reveal Animation for Hero Text
+        gsap.from("#title-1", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+            delay: 0.2
+        });
+        gsap.from("#title-2", {
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power4.out",
+            delay: 0.4
         });
 
-        // --- 2. Skills Chart (Chart.js) ---
-        // EDIT THIS: Change the data values to reflect your actual focus areas
-        const ctx = document.getElementById('skillsChart');
-
-        // Check if chart element exists (defensive programming)
-        if (ctx) {
-            new Chart(ctx, {
-                type: 'radar', 
-                data: {
-                    labels: ['CAD (3D Modeling)', 'FEA / Simulation', 'Manufacturing (DFM)', 'Thermodynamics', 'GD&T', 'Prototyping'],
-                    datasets: [{
-                        label: 'Proficiency',
-                        data: [95, 80, 85, 70, 90, 85], // EDIT THESE VALUES (0-100)
-                        backgroundColor: 'rgba(2, 132, 199, 0.2)', // Sky-600 tint (Blueprint Blue)
-                        borderColor: '#0284c7', // Sky-600
-                        borderWidth: 2,
-                        pointBackgroundColor: '#0284c7',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#0284c7'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                color: '#e5e7eb' // light gray
-                            },
-                            grid: {
-                                color: '#e5e7eb'
-                            },
-                            pointLabels: {
-                                font: {
-                                    size: 11,
-                                    family: "'Inter', sans-serif",
-                                    weight: '600'
-                                },
-                                color: '#44403c' // stone-700
-                            },
-                            ticks: {
-                                display: false, // Hide the numbers on the scale for a cleaner look
-                                max: 100
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false // Hide legend as we only have one dataset
-                        },
-                        tooltip: {
-                            backgroundColor: '#1c1917',
-                            titleFont: { family: "'Inter', sans-serif" },
-                            bodyFont: { family: "'Inter', sans-serif" },
-                            padding: 10,
-                            displayColors: false
-                        }
-                    }
-                }
-            });
-        }
-
-        // --- 3. Navbar Scroll Effect ---
-        const navbar = document.getElementById('navbar');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('shadow-md');
+        // 2. Parallax Effect for Rover Image
+        gsap.to(".parallax-container img", {
+            yPercent: 20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".parallax-container",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
             }
+        });
+
+        // 3. Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const hoverElements = document.querySelectorAll('.cursor-hover');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
         });
     </script>
 </body>
