@@ -25,7 +25,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     fontSize: {
-                        'huge': '13vw', /* Slightly smaller to prevent crowding */
+                        'huge': '10vw', /* Reduced to fit viewport better */
                     }
                 }
             }
@@ -98,7 +98,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
         <div class="flex flex-col">
-            <span class="font-display font-bold text-xl tracking-wider cursor-hover">JOHN DOE</span>
+            <span class="font-display font-bold text-xl tracking-wider cursor-hover">M. Akshaf</span>
             <span class="font-mono text-xs text-gray-400">MECH.ENG // SF, CA</span>
         </div>
         <a href="mailto:email@example.com" class="font-mono text-xs md:text-sm border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-colors cursor-hover">
@@ -110,7 +110,7 @@
         HERO SECTION: CLEAN & TECHNICAL
         No overlapping. Clear Separation.
     -->
-    <header class="min-h-screen flex flex-col justify-center items-center pt-24 pb-12 px-4 relative">
+    <header class="h-screen min-h-[600px] flex flex-col justify-center items-center pt-16 pb-8 px-4 relative overflow-hidden">
         
         <!-- Background Grid Line (Subtle Technical Feel) -->
         <div class="absolute inset-0 z-0 flex justify-center pointer-events-none">
@@ -124,7 +124,7 @@
 
         <!-- 2. Middle Image: SPACED OUT (No negative margins) -->
         <!-- Added my-4 to create breathing room -->
-        <div class="w-full max-w-[90vw] md:max-w-[80vw] h-[35vh] md:h-[50vh] relative my-4 z-10 img-container cursor-hover">
+        <div class="w-full max-w-[90vw] md:max-w-[60vw] h-[25vh] md:h-[38vh] relative my-2 z-10 img-container cursor-hover border border-white/5">
             <img 
                 src="./rover.png" 
                 alt="Rover 1" 
@@ -269,7 +269,7 @@
 
     <!-- Footer -->
     <footer class="py-12 text-center font-mono text-xs text-gray-600">
-        JOHN DOE © 2025
+        M. Akshaf @2025
     </footer>
 
     <!-- JavaScript for Animations -->
@@ -314,5 +314,3 @@
     </script>
 </body>
 </html>
-
-
