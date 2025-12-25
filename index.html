@@ -133,7 +133,7 @@
         </div>
 
         <!-- 3. Bottom Text: OUTLINE / WIREFRAME -->
-        <h1 class="font-display text-huge leading-[0.8] font-bold uppercase tracking-tighter text-center reveal-text z-10 text-outline">
+        <h1 class="font-display text-huge leading-[0.8] font-bold uppercase tracking-tighter text-center reveal-text z-10 text-outline -mt-1 md:-mt-4">
             ENGINEER
         </h1>
 
@@ -273,9 +273,8 @@
 
         // Hero Text Reveal
         gsap.from(".reveal-text", {
-            y: 100,
             opacity: 0,
-            duration: 1.5,
+            duration: 0.8,
             stagger: 0.2,
             ease: "power4.out"
         });
