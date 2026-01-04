@@ -285,15 +285,32 @@
             });
 
             // Project Stagger Reveal
-            gsap.utils.toArray("article").forEach((article, i) => {
-                gsap.from(article, {
+            gsap.utils.toArray("#work .img-container").forEach((el, i) => {
+                gsap.from(el, {
                     y: 50,
                     opacity: 0,
                     duration: 1,
                     scrollTrigger: {
-                        trigger: article,
+                        trigger: el,
                         start: "top 85%",
                     }
+                });
+            });
+
+            // Mobile: Fade images to color when in view
+            let mm = gsap.matchMedia();
+            mm.add("(hover: none)", () => {
+                gsap.utils.toArray(".img-container img").forEach((img) => {
+                    gsap.to(img, {
+                        filter: "grayscale(0%)",
+                        duration: 0.8,
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top 75%",
+                            end: "bottom 25%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    });
                 });
             });
 
