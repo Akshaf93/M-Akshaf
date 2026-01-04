@@ -38,6 +38,10 @@
             mix-blend-mode: exclusion;
         }
         #cursor.hovered { width: 60px; height: 60px; background-color: transparent; border: 1px solid white; }
+        @media (hover: none) {
+            body { cursor: auto; }
+            #cursor { display: none; }
+        }
     </style>
 </head>
 <body>
