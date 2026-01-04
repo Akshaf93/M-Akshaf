@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transmission & Gears | M. Akshaf</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+   <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        black: '#0a0a0a',
+                        dark: '#111111',
+                        white: '#f4f4f5',
+                        accent: '#3b82f6', 
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background-color: #0a0a0a; color: #f4f4f5; cursor: none; }
+        #cursor {
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+            background-color: white; border-radius: 50%; pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s;
+            mix-blend-mode: exclusion;
+        }
+        #cursor.hovered { width: 60px; height: 60px; background-color: transparent; border: 1px solid white; }
+    </style>
+</head>
+<body>
+    <div id="cursor"></div>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
+        <a href="index.html" class="font-display font-bold text-xl tracking-wider cursor-hover hover:text-accent transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i> BACK TO HOME
+        </a>
+    </nav>
+
+    <!-- Hero -->
+    <header class="h-[70vh] relative overflow-hidden flex items-end p-4 md:p-12 border-b border-white/10">
+        <img src="./1.png" class="absolute inset-0 w-full h-full object-cover opacity-40" alt="Transmission">
+        <div class="relative z-10 max-w-5xl">
+            <p class="font-mono text-accent text-sm mb-4">03 — DRIVE SYSTEM</p>
+            <h1 class="font-display text-6xl md:text-8xl font-bold uppercase leading-none mb-6">Transmission & Gears</h1>
+            <p class="font-sans text-xl text-gray-300 max-w-2xl">
+                High-torque planetary gearbox assembly. Optimized for incline climbing.
+            </p>
+        </div>
+    </header>
+
+    <!-- Details -->
+    <section class="py-24 px-4 md:px-12 bg-black grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="md:col-span-1">
+            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">PROJECT DATA</h3>
+            <div class="space-y-6">
+                <div><h4 class="font-bold text-white">Component</h4><p class="text-gray-400 text-sm">Planetary Gearbox</p></div>
+                <div><h4 class="font-bold text-white">Ratio</h4><p class="text-gray-400 text-sm">45:1 Reduction</p></div>
+                <div><h4 class="font-bold text-white">Material</h4><p class="text-gray-400 text-sm">Nylon / Steel</p></div>
+            </div>
+        </div>
+        <div class="md:col-span-2">
+            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE CHALLENGE</h3>
+            <p class="font-sans text-lg text-gray-300 leading-relaxed mb-8">
+                The rover required high torque to climb 45-degree inclines, but the available motors were high-speed/low-torque. Space within the wheel hub was extremely limited.
+            </p>
+            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE SOLUTION</h3>
+            <p class="font-sans text-lg text-gray-300 leading-relaxed">
+                Designed a compact planetary gear system that fits inside the wheel rim. The involute gear profiles were modified for 3D printing to reduce friction and backlash.
+            </p>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const hoverElements = document.querySelectorAll('.cursor-hover');
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        gsap.ticker.add(() => { cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`; });
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+    </script>
+</body>
+</html>
