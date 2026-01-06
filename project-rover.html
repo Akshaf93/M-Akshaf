@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
     
    <script>
         tailwind.config = {
@@ -72,8 +73,8 @@
             <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">PROJECT DATA</h3>
             <div class="space-y-6">
                 <div><h4 class="font-bold text-white">Role</h4><p class="text-gray-400 text-sm">Lead Engineer</p></div>
-                <div><h4 class="font-bold text-white">Timeline</h4><p class="text-gray-400 text-sm">3 Months</p></div>
-                <div><h4 class="font-bold text-white">Tech Stack</h4><p class="text-gray-400 text-sm">SolidWorks, 3D Printing, Arduino</p></div>
+                <div><h4 class="font-bold text-white">Timeline</h4><p class="text-gray-400 text-sm">2 Months</p></div>
+                <div><h4 class="font-bold text-white">Tech Stack</h4><p class="text-gray-400 text-sm">SolidWorks, 3D Printing, Arduino, Microcontroller, Electronics</p></div>
             </div>
         </div>
         <div class="md:col-span-2">
@@ -85,6 +86,51 @@
             <p class="font-sans text-lg text-gray-300 leading-relaxed">
                 We utilized a rocker-bogie suspension system adapted for 3D printing tolerances. The chassis was optimized using topology optimization to reduce weight without sacrificing structural integrity.
             </p>
+        </div>
+    </section>
+
+    <!-- 3D Model Viewer -->
+    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
+        <h3 class="font-display text-4xl uppercase font-bold mb-12">Interactive Model</h3>
+        <div class="w-full h-[60vh] bg-black/50 border border-white/10 rounded-lg overflow-hidden relative">
+            <model-viewer 
+                src="./rover_model.glb" 
+                poster="./poster.png" 
+                alt="3D Model of the Rover" 
+                shadow-intensity="1" 
+                camera-controls 
+                auto-rotate 
+                class="w-full h-full"
+                style="background-color: #111;"
+            >
+                <div class="progress-bar hide" slot="progress-bar">
+                    <div class="update-bar"></div>
+                </div>
+            </model-viewer>
+            <div class="absolute bottom-4 left-4 pointer-events-none">
+                <p class="font-mono text-xs text-accent">DRAG TO ROTATE // SCROLL TO ZOOM</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Process -->
+    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+                <h3 class="font-mono text-accent text-xs mb-6">THE PROCESS</h3>
+                <h2 class="font-display text-3xl uppercase font-bold mb-6">Iterative Design & Prototyping</h2>
+                <p class="font-sans text-gray-300 leading-relaxed mb-6">
+                    The development process began with a rough sketch of the rocker-bogie mechanism, which is famous for its ability to traverse obstacles twice the height of the wheel diameter. We moved quickly into SolidWorks to create a parametric model.
+                </p>
+                <p class="font-sans text-gray-300 leading-relaxed">
+                    Over 4 iterations were printed. The first version suffered from layer delamination at the suspension joints. We adjusted print orientation and increased wall thickness to 4 perimeters, solving the structural issues without adding metal reinforcement.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="./process-1.jpg" alt="CAD Draft" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
+                <img src="./process-2.jpg" alt="3D Printing" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
+                <img src="./process-3.jpg" alt="Assembly" class="col-span-2 w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
+            </div>
         </div>
     </section>
 

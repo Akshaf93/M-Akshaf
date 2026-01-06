@@ -88,6 +88,54 @@
         </div>
     </section>
 
+    <!-- Methodology -->
+    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="font-mono text-accent text-xs mb-6">METHODOLOGY</h3>
+            <h2 class="font-display text-3xl uppercase font-bold mb-8">Analytical vs. Numerical Approach</h2>
+            
+            <div class="space-y-12">
+                <div>
+                    <h4 class="font-bold text-white text-xl mb-4">1. Hand Calculations</h4>
+                    <p class="font-sans text-gray-300 leading-relaxed mb-4">
+                        Using the Method of Joints, we isolated each node of the truss to solve for member forces. The structure was assumed to be statically determinate. We calculated reaction forces at the supports and propagated them through the web members.
+                    </p>
+                    <div class="p-6 border border-white/10 bg-black/50 font-mono text-xs text-gray-400">
+                        <p>ΣFx = 0  //  ΣFy = 0  //  ΣM = 0</p>
+                        <p class="mt-2">Max Tension: Member AB (+4500 N)</p>
+                        <p>Max Compression: Member CD (-5200 N)</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-xl mb-4">2. FEA Simulation (Ansys)</h4>
+                    <p class="font-sans text-gray-300 leading-relaxed mb-4">
+                        The geometry was imported into Ansys Workbench. We applied a mesh size of 5mm using tetrahedral elements. Boundary conditions were set to fixed support at the left node and roller support at the right node.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
+        <h3 class="font-display text-3xl uppercase font-bold mb-12">Visual Analysis</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="group relative overflow-hidden border border-white/10">
+                <img src="./fea-stress.png" alt="Von Mises Stress" class="w-full h-80 object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                    <p class="font-mono text-white">Von Mises Stress Distribution</p>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden border border-white/10">
+                <img src="./fea-displacement.png" alt="Total Deformation" class="w-full h-80 object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                    <p class="font-mono text-white">Total Deformation Plot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
 
     <script>

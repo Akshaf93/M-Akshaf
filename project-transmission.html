@@ -88,6 +88,38 @@
         </div>
     </section>
 
+    <!-- Deep Dive -->
+    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h3 class="font-mono text-accent text-xs mb-6">ENGINEERING DEEP DIVE</h3>
+                <h2 class="font-display text-3xl uppercase font-bold mb-6">Gear Profile Optimization</h2>
+                <p class="font-sans text-gray-300 leading-relaxed mb-6">
+                    Standard involute gears often bind when 3D printed due to the "elephant foot" effect and general tolerance issues. For this planetary gearbox, we modified the pressure angle to 25 degrees to increase tooth strength and applied a negative offset to the tooth thickness.
+                </p>
+                <ul class="space-y-4 font-mono text-sm text-gray-400">
+                    <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Module: 1.5</li>
+                    <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Sun Gear: 12 Teeth</li>
+                    <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Ring Gear: 48 Teeth</li>
+                    <li class="flex items-center"><i class="fas fa-check text-accent mr-3"></i> Planets: 3 x 18 Teeth</li>
+                </ul>
+            </div>
+            <div class="h-96 border border-white/10 relative overflow-hidden">
+                 <img src="./gear-exploded.png" alt="Exploded View" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
+        <h3 class="font-display text-3xl uppercase font-bold mb-12">Fabrication Gallery</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <img src="./gear-print-1.jpg" class="w-full h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+            <img src="./gear-print-2.jpg" class="w-full h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+            <img src="./gear-assembly.jpg" class="w-full h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+        </div>
+    </section>
+
     <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
 
     <script>

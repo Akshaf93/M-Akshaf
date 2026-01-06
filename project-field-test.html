@@ -88,6 +88,47 @@
         </div>
     </section>
 
+    <!-- Data Logs -->
+    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="font-mono text-accent text-xs mb-6">DATA LOGS</h3>
+            <h2 class="font-display text-3xl uppercase font-bold mb-8">Performance Metrics</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="p-6 border border-white/10 bg-black">
+                    <h4 class="font-mono text-gray-500 text-xs mb-2">MAX INCLINE</h4>
+                    <p class="font-display text-5xl font-bold text-white">42°</p>
+                    <p class="text-xs text-green-500 mt-2">↑ Exceeded Target (35°)</p>
+                </div>
+                <div class="p-6 border border-white/10 bg-black">
+                    <h4 class="font-mono text-gray-500 text-xs mb-2">RUNTIME</h4>
+                    <p class="font-display text-5xl font-bold text-white">45<span class="text-xl">min</span></p>
+                    <p class="text-xs text-red-500 mt-2">↓ Below Target (60min)</p>
+                </div>
+                <div class="p-6 border border-white/10 bg-black">
+                    <h4 class="font-mono text-gray-500 text-xs mb-2">PEAK CURRENT</h4>
+                    <p class="font-display text-5xl font-bold text-white">12.4<span class="text-xl">A</span></p>
+                    <p class="text-xs text-gray-400 mt-2">Within Safety Limits</p>
+                </div>
+            </div>
+
+            <p class="font-sans text-gray-300 leading-relaxed">
+                Testing revealed that while the torque was sufficient for steep inclines, the battery discharge rate was higher than anticipated during stall conditions. This suggests a need for a higher capacity LiPo battery or a reduction in overall vehicle weight for the next iteration.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
+        <h3 class="font-display text-3xl uppercase font-bold mb-12">Field Gallery</h3>
+        <div class="masonry-grid grid grid-cols-1 md:grid-cols-2 gap-8">
+            <img src="./field-1.jpg" class="w-full h-80 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+            <img src="./field-2.jpg" class="w-full h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+            <img src="./field-3.jpg" class="w-full h-64 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+            <img src="./field-4.jpg" class="w-full h-80 object-cover border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+        </div>
+    </section>
+
     <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
 
     <script>
