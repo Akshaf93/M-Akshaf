@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -21,13 +21,12 @@
             theme: {
                 extend: {
                     colors: {
-                        black: '#0b1120',
-                        dark: '#0f172a',
-                        surface: '#1e293b',
-                        white: '#f1f5f9',
-                        muted: '#94a3b8',
+                        black: '#090909',
+                        dark: '#111111',
+                        surface: '#1a1a1a',
+                        white: '#f0f0f0',
+                        muted: '#777777',
                         accent: '#e87400',
-                        'accent-dim': '#c26200',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -41,242 +40,212 @@
 
     <style>
         body {
-            background-color: #0b1120;
-            color: #f1f5f9;
+            background-color: #090909;
+            color: #f0f0f0;
             overflow-x: hidden;
-        }
-
-        /* Ruled line background for engineering feel */
-        .ruled-bg {
-            background-image:
-                linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px);
-            background-size: 100% 2rem;
-        }
-
-        /* Image subtle desaturation */
-        .img-desat {
-            filter: saturate(0.7) brightness(0.9);
-            transition: filter 0.5s ease;
-        }
-        .img-desat:hover {
-            filter: saturate(1) brightness(1);
-        }
-
-        /* Image Hover Zoom */
-        .img-container {
-            overflow: hidden;
-        }
-        .img-container img {
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
-            will-change: transform;
-        }
-        .img-container:hover img {
-            transform: scale(1.03);
-            filter: saturate(1) brightness(1);
-        }
-
-        /* Section divider line */
-        .section-rule {
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
         }
 
         /* Hero fluid text */
         .hero-text {
-            font-size: clamp(3rem, 10vw, 8rem);
-            line-height: 0.85;
+            font-size: clamp(3.5rem, 12vw, 10rem);
+            line-height: 0.9;
         }
 
-        /* Text outline / wireframe effect */
-        .text-outline {
-            -webkit-text-stroke: 2px rgba(241, 245, 249, 0.6);
-            color: transparent;
-            transition: all 0.5s ease;
+        /* Card image: darken + desaturate so any bg blends into the card */
+        .card-img {
+            filter: brightness(0.45) saturate(0.6);
+            transition: filter 0.6s ease, transform 0.6s ease;
         }
-        .text-outline:hover {
-            color: #f1f5f9;
-            -webkit-text-stroke: 0px;
+        .card:hover .card-img {
+            filter: brightness(0.6) saturate(0.85);
+            transform: scale(1.04);
+        }
+
+        /* Section divider */
+        .divider {
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        /* Subtle grid bg */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 4rem 4rem;
         }
 
         html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="ruled-bg">
+<body>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
+    <nav class="fixed top-0 w-full px-6 py-5 z-50 flex justify-between items-center">
         <div class="flex flex-col">
-            <span class="font-display font-bold text-xl tracking-wider">M. Akshaf</span>
-            <span class="font-mono text-xs text-muted">MECH.ENG // ISL, PK</span>
+            <span class="font-display font-bold text-lg tracking-wider">M. AKSHAF</span>
+            <span class="font-mono text-[10px] text-muted tracking-widest">MECHANICAL ENGINEER</span>
         </div>
-        <a href="mailto:email@example.com" class="font-mono text-xs md:text-sm border border-white/20 px-4 py-2 hover:bg-accent hover:border-accent hover:text-black transition-all duration-300">
+        <a href="mailto:email@example.com" class="font-mono text-xs border border-white/15 px-5 py-2.5 hover:bg-accent hover:border-accent hover:text-black transition-all duration-300 hidden md:block">
             AVAILABLE FOR HIRE
         </a>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="h-screen min-h-[600px] flex flex-col justify-center items-center gap-4 md:gap-8 px-4 relative overflow-hidden">
+    <!-- Hero -->
+    <header class="h-screen min-h-[600px] flex flex-col justify-end px-6 md:px-12 pb-16 relative overflow-hidden">
 
-        <!-- Datum marker (top-left engineering reference) -->
-        <div class="absolute top-24 left-6 font-mono text-xs text-muted/40 hidden md:block">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-px bg-muted/20"></div>
-                <span>DWG.001 REV.04</span>
+        <!-- Background: rover render darkened heavily -->
+        <img src="./rover.png"
+             alt=""
+             aria-hidden="true"
+             class="absolute inset-0 w-full h-full object-cover opacity-[0.12]"
+             fetchpriority="high">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                <span class="font-mono text-xs text-accent tracking-widest">IAM3D COMPETITION WINNER — $1000 USD</span>
+            </div>
+
+            <h1 class="font-display hero-text font-bold uppercase tracking-tight reveal-text">
+                MECHANICAL
+            </h1>
+            <h1 class="font-display hero-text font-bold uppercase tracking-tight reveal-text" style="-webkit-text-stroke: 1.5px rgba(240,240,240,0.4); color: transparent;">
+                ENGINEER
+            </h1>
+
+            <div class="flex items-center gap-6 mt-10">
+                <a href="#work" class="font-mono text-xs border border-white/20 px-6 py-3 hover:bg-white hover:text-black transition-all duration-300">
+                    VIEW PROJECTS
+                </a>
+                <span class="font-mono text-xs text-muted hidden md:block">SCROLL</span>
+                <div class="w-12 h-px bg-white/20 hidden md:block"></div>
             </div>
         </div>
-
-        <h1 class="font-display hero-text font-bold uppercase tracking-tighter text-center reveal-text z-10">
-            MECHANICAL
-        </h1>
-
-        <div class="w-full max-w-[90vw] md:max-w-[50vw] h-[25vh] md:h-[30vh] relative z-10 img-container border border-white/5">
-            <img
-                src="./rover.png"
-                alt="3D printed rover designed for the IAM3D competition, featuring rocker-bogie suspension"
-                class="w-full h-full object-cover img-desat"
-                fetchpriority="high"
-            >
-            <!-- Technical Badge -->
-            <div class="absolute bottom-4 right-4 bg-black/80 backdrop-blur border border-accent/30 p-3 flex items-center gap-3">
-                <div class="w-2 h-2 bg-accent animate-pulse rounded-full"></div>
-                <p class="font-mono text-xs text-white">Efx IAM3D Winner R.O.V.E.R</p>
-            </div>
-        </div>
-
-        <h1 class="font-display hero-text font-bold uppercase tracking-tighter text-center reveal-text z-10 text-outline -mt-1 md:-mt-4">
-            ENGINEER
-        </h1>
-
     </header>
 
 
-    <!-- Section: Selected Works -->
-    <section id="work" class="px-4 md:px-12 py-24 bg-dark section-rule">
+    <!-- Selected Works -->
+    <section id="work" class="px-6 md:px-12 py-24 divider">
 
-        <!-- Section Title -->
-        <div class="flex items-end gap-4 mb-16 border-b border-white/10 pb-6">
-            <div class="flex items-baseline gap-3">
-                <span class="font-mono text-accent text-sm">&sect;01</span>
-                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase">Selected Works</h2>
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <span class="font-mono text-accent text-xs tracking-widest">&sect;01</span>
+                <h2 class="font-display text-4xl md:text-6xl font-bold uppercase mt-2">Selected Works</h2>
             </div>
-            <p class="font-mono text-sm text-muted mb-2 pb-1 hidden md:block">(04 PROJECTS)</p>
+            <span class="font-mono text-xs text-muted hidden md:block">04 PROJECTS</span>
         </div>
 
         <!-- Project Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
 
             <!-- Project 1: Rover -->
-            <a href="project-rover.html" class="block group relative h-[60vh] md:col-span-1 img-container">
-                <img src="./rover.png" alt="Efx IAM3D competition rover with rocker-bogie suspension system" class="w-full h-full object-cover img-desat" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100 flex flex-col justify-end p-8">
-                    <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <p class="font-mono text-xs text-accent mb-2">01 — MECHATRONICS</p>
-                        <h3 class="font-display text-4xl uppercase font-bold">Efx IAM3D R.O.V.E.R</h3>
-                        <p class="font-sans text-sm text-muted mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            $1000 USD Winning 3D Printed R.O.V.E.R for IAM3D Competition 2025-26.
-                        </p>
-                    </div>
+            <a href="project-rover.html" class="card block group relative h-[55vh] overflow-hidden bg-dark">
+                <img src="./rover.png" alt="Efx IAM3D competition rover" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8">
+                    <p class="font-mono text-[10px] text-accent tracking-widest mb-3">01 — MECHATRONICS</p>
+                    <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Efx IAM3D<br>R.O.V.E.R</h3>
+                    <p class="font-sans text-sm text-muted mt-3 max-w-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                        $1000 USD Winning 3D Printed R.O.V.E.R for IAM3D Competition 2025-26.
+                    </p>
                 </div>
-                <!-- Corner annotation -->
-                <div class="absolute top-4 right-4 font-mono text-[10px] text-muted/40 hidden md:block">
-                    <i class="fas fa-arrow-up-right-from-square mr-1"></i> VIEW
+                <div class="absolute top-5 right-5 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-arrow-right -rotate-45 text-xs"></i>
                 </div>
             </a>
 
             <!-- Project 2: Truss -->
-            <a href="project-truss.html" class="block group relative h-[60vh] md:col-span-1 img-container">
-                <img src="./Truss-2.png" alt="2D truss structure modeled for finite element analysis" class="w-full h-full object-cover img-desat" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100 flex flex-col justify-end p-8">
-                    <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <p class="font-mono text-xs text-accent mb-2">02 — STRUCTURAL ANALYSIS</p>
-                        <h3 class="font-display text-4xl uppercase font-bold">2D Truss Analysis</h3>
-                        <p class="font-sans text-sm text-muted mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            Internal and external force analysis of members of a 2D truss structure.
-                        </p>
-                    </div>
+            <a href="project-truss.html" class="card block group relative h-[55vh] overflow-hidden bg-dark">
+                <img src="./Truss-2.png" alt="2D truss axial force analysis in Ansys" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8">
+                    <p class="font-mono text-[10px] text-accent tracking-widest mb-3">02 — STRUCTURAL ANALYSIS</p>
+                    <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">2D Truss<br>Analysis</h3>
+                    <p class="font-sans text-sm text-muted mt-3 max-w-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                        Internal and external force analysis of members of a 2D truss structure.
+                    </p>
                 </div>
-                <div class="absolute top-4 right-4 font-mono text-[10px] text-muted/40 hidden md:block">
-                    <i class="fas fa-arrow-up-right-from-square mr-1"></i> VIEW
+                <div class="absolute top-5 right-5 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-arrow-right -rotate-45 text-xs"></i>
                 </div>
             </a>
 
-            <!-- Project 3: Transmission (Wide) -->
-            <a href="project-transmission.html" class="block group relative h-[50vh] md:col-span-2 img-container">
-                <img src="./1.png" alt="Planetary gearbox assembly for high-torque drive system" class="w-full h-full object-cover img-desat" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100 flex flex-col justify-end p-8">
-                    <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <p class="font-mono text-xs text-accent mb-2">03 — DRIVE SYSTEM</p>
-                        <h3 class="font-display text-4xl uppercase font-bold">Transmission & Gears</h3>
-                        <p class="font-sans text-sm text-muted mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            High-torque planetary gearbox assembly. Optimized for incline climbing.
-                        </p>
-                    </div>
+            <!-- Project 3: Transmission (wide) -->
+            <a href="project-transmission.html" class="card block group relative h-[45vh] md:col-span-2 overflow-hidden bg-dark">
+                <img src="./1.png" alt="SolidWorks assembly of planetary gearbox and drive arms" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8">
+                    <p class="font-mono text-[10px] text-accent tracking-widest mb-3">03 — DRIVE SYSTEM</p>
+                    <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Transmission & Gears</h3>
+                    <p class="font-sans text-sm text-muted mt-3 max-w-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+                        High-torque planetary gearbox assembly. Optimized for incline climbing.
+                    </p>
                 </div>
-                <div class="absolute top-4 right-4 font-mono text-[10px] text-muted/40 hidden md:block">
-                    <i class="fas fa-arrow-up-right-from-square mr-1"></i> VIEW
+                <div class="absolute top-5 right-5 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-arrow-right -rotate-45 text-xs"></i>
                 </div>
             </a>
 
             <!-- Project 4: Field Test -->
-            <a href="project-field-test.html" class="block group relative h-[40vh] md:col-span-1 img-container">
-                <img src="./2.png" alt="Rover undergoing field validation testing on rough terrain" class="w-full h-full object-cover img-desat" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-100 flex flex-col justify-end p-8">
-                    <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <p class="font-mono text-xs text-accent mb-2">04 — TESTING</p>
-                        <h3 class="font-display text-3xl uppercase font-bold">Field Validation</h3>
-                    </div>
+            <a href="project-field-test.html" class="card block group relative h-[45vh] overflow-hidden bg-dark">
+                <img src="./2.png" alt="SolidWorks assembly of dump truck for field testing" class="card-img absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8">
+                    <p class="font-mono text-[10px] text-accent tracking-widest mb-3">04 — TESTING</p>
+                    <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Field<br>Validation</h3>
                 </div>
-                <div class="absolute top-4 right-4 font-mono text-[10px] text-muted/40 hidden md:block">
-                    <i class="fas fa-arrow-up-right-from-square mr-1"></i> VIEW
+                <div class="absolute top-5 right-5 w-10 h-10 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i class="fas fa-arrow-right -rotate-45 text-xs"></i>
                 </div>
             </a>
 
-            <!-- Archive Link Card -->
-            <div class="group relative h-[40vh] md:col-span-1 border border-white/10 flex flex-col justify-center items-center bg-surface/50 hover:bg-accent transition-colors duration-500">
-                <div class="text-center">
-                    <i class="fas fa-arrow-right text-4xl mb-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
-                    <h3 class="font-display text-3xl uppercase font-bold">View Archive</h3>
-                    <p class="font-mono text-xs mt-2 text-muted group-hover:text-black/70">SEE ALL CAD FILES</p>
-                </div>
+            <!-- Archive -->
+            <div class="group relative h-[45vh] border border-white/5 flex flex-col justify-center items-center bg-surface hover:bg-accent transition-colors duration-500 cursor-pointer">
+                <i class="fas fa-arrow-right text-3xl mb-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                <h3 class="font-display text-2xl uppercase font-bold">View Archive</h3>
+                <p class="font-mono text-[10px] mt-2 text-muted group-hover:text-black/60 tracking-widest">ALL CAD FILES</p>
             </div>
 
         </div>
     </section>
 
-    <!-- Section: Toolbox / Skills -->
-    <section class="py-24 px-4 md:px-12 bg-black section-rule">
+    <!-- Toolbox -->
+    <section class="py-24 px-6 md:px-12 divider grid-bg">
 
-        <div class="flex items-baseline gap-3 mb-12">
-            <span class="font-mono text-accent text-sm">&sect;02</span>
-            <h2 class="font-display text-4xl md:text-5xl font-bold uppercase">Toolbox</h2>
+        <div class="mb-12">
+            <span class="font-mono text-accent text-xs tracking-widest">&sect;02</span>
+            <h2 class="font-display text-4xl md:text-5xl font-bold uppercase mt-2">Toolbox</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
 
-            <div class="col-span-1 md:col-span-2 p-8 border border-white/10 bg-dark">
-                <h3 class="font-mono text-accent text-xs mb-4">CORE STACK</h3>
-                <div class="flex flex-wrap gap-x-6 gap-y-2">
+            <div class="md:col-span-2 p-8 border border-white/5 bg-dark">
+                <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">SOFTWARE</h3>
+                <div class="flex flex-wrap gap-x-6 gap-y-3">
                     <span class="text-2xl font-bold font-display uppercase">SolidWorks</span>
-                    <span class="text-2xl font-bold font-display uppercase text-muted/50">Fusion 360</span>
+                    <span class="text-2xl font-bold font-display uppercase text-muted/40">Fusion 360</span>
                     <span class="text-2xl font-bold font-display uppercase">Ansys</span>
-                    <span class="text-2xl font-bold font-display uppercase text-muted/50">Python</span>
+                    <span class="text-2xl font-bold font-display uppercase text-muted/40">Python</span>
                 </div>
             </div>
 
-            <div class="col-span-1 p-8 border border-white/10 bg-dark">
-                <h3 class="font-mono text-accent text-xs mb-4">MANUFACTURING</h3>
-                <ul class="font-sans text-sm text-muted space-y-2">
-                    <li class="flex items-center gap-2"><span class="w-1 h-1 bg-accent rounded-full"></span>3D Printing (SLA/FDM)</li>
-                    <li class="flex items-center gap-2"><span class="w-1 h-1 bg-accent rounded-full"></span>CNC Machining</li>
-                    <li class="flex items-center gap-2"><span class="w-1 h-1 bg-accent rounded-full"></span>Injection Molding DFM</li>
+            <div class="p-8 border border-white/5 bg-dark">
+                <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">MANUFACTURING</h3>
+                <ul class="font-sans text-sm text-muted space-y-3">
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>3D Printing (SLA/FDM)</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>CNC Machining</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Injection Molding DFM</li>
                 </ul>
             </div>
 
-            <div class="col-span-1 p-8 border border-white/10 bg-dark flex flex-col justify-between">
-                <h3 class="font-mono text-accent text-xs mb-4">CONNECT</h3>
-                <div class="flex gap-4 text-2xl">
-                    <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-github"></i></a>
-                    <a href="#" class="hover:text-accent transition-colors"><i class="fas fa-envelope"></i></a>
+            <div class="p-8 border border-white/5 bg-dark flex flex-col justify-between">
+                <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">CONNECT</h3>
+                <div class="flex gap-5 text-2xl">
+                    <a href="#" class="text-muted hover:text-accent transition-colors"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-muted hover:text-accent transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-muted hover:text-accent transition-colors"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -284,50 +253,35 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 text-center font-mono text-xs text-muted/50 section-rule">
-        &copy; 2025 M. Akshaf
+    <footer class="py-12 text-center font-mono text-[10px] text-muted/40 divider tracking-widest">
+        &copy; 2025 M. AKSHAF
     </footer>
 
-    <!-- JavaScript for Animations -->
+    <!-- Animations -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Hero Text Reveal
+            // Hero fade-in
             gsap.from(".reveal-text", {
+                y: 40,
                 opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power4.out"
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
             });
 
-            // Project Stagger Reveal
-            gsap.utils.toArray("#work .img-container, #work .group").forEach((el) => {
+            // Cards reveal on scroll
+            gsap.utils.toArray(".card").forEach((el) => {
                 gsap.from(el, {
-                    y: 50,
+                    y: 60,
                     opacity: 0,
-                    duration: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
                         start: "top 85%",
                     }
-                });
-            });
-
-            // Mobile: Restore image saturation when in view
-            let mm = gsap.matchMedia();
-            mm.add("(hover: none)", () => {
-                gsap.utils.toArray(".img-container img").forEach((img) => {
-                    gsap.to(img, {
-                        filter: "saturate(1) brightness(1)",
-                        duration: 0.8,
-                        scrollTrigger: {
-                            trigger: img,
-                            start: "top 75%",
-                            end: "bottom 25%",
-                            toggleActions: "play reverse play reverse"
-                        }
-                    });
                 });
             });
         });
