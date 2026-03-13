@@ -4,112 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2D Truss Analysis | M. Akshaf</title>
+    <meta name="description" content="Finite element analysis and hand calculation verification of a 2D truss structure. Von Mises stress distribution and deformation analysis.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    
-   <script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        black: '#0a0a0a',
-                        dark: '#111111',
-                        white: '#f4f4f5',
-                        accent: '#3b82f6', 
+                        black: '#0b1120',
+                        dark: '#0f172a',
+                        surface: '#1e293b',
+                        white: '#f1f5f9',
+                        muted: '#94a3b8',
+                        accent: '#e87400',
+                        'accent-dim': '#c26200',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        body { background-color: #0a0a0a; color: #f4f4f5; cursor: none; }
-        #cursor {
-            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
-            background-color: white; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s;
-            mix-blend-mode: exclusion;
+        body { background-color: #0b1120; color: #f1f5f9; }
+        .ruled-bg {
+            background-image: linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+            background-size: 100% 2rem;
         }
-        #cursor.hovered { width: 60px; height: 60px; background-color: transparent; border: 1px solid white; }
-        @media (hover: none) {
-            body { cursor: auto; }
-            #cursor { display: none; }
-        }
+        .section-rule { border-top: 1px solid rgba(148, 163, 184, 0.1); }
+        .img-desat { filter: saturate(0.7) brightness(0.9); transition: filter 0.5s ease; }
+        .img-desat:hover { filter: saturate(1) brightness(1); }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body>
-    <div id="cursor"></div>
+<body class="ruled-bg">
 
     <!-- Nav -->
     <nav class="fixed top-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
-        <a href="index.html" class="font-display font-bold text-xl tracking-wider cursor-hover hover:text-accent transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> BACK TO HOME
+        <a href="index.html" class="font-display font-bold text-sm tracking-wider hover:text-accent transition-colors flex items-center gap-2">
+            <i class="fas fa-arrow-left text-xs"></i> BACK TO HOME
         </a>
+        <span class="font-mono text-xs text-muted hidden md:block">02 / 04</span>
     </nav>
 
     <!-- Hero -->
-    <header class="h-[70vh] relative overflow-hidden flex items-end p-4 md:p-12 border-b border-white/10">
-        <img src="./Truss-2.png" class="absolute inset-0 w-full h-full object-cover opacity-40" alt="Truss">
+    <header class="h-[70vh] relative overflow-hidden flex items-end p-4 md:p-12 section-rule">
+        <img src="./Truss-2.png" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="2D truss structure with applied loads and constraints">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         <div class="relative z-10 max-w-5xl">
             <p class="font-mono text-accent text-sm mb-4">02 — STRUCTURAL ANALYSIS</p>
-            <h1 class="font-display text-6xl md:text-8xl font-bold uppercase leading-none mb-6">2D Truss Analysis</h1>
-            <p class="font-sans text-xl text-gray-300 max-w-2xl">
+            <h1 class="font-display font-bold uppercase leading-none mb-6" style="font-size: clamp(2.5rem, 8vw, 6rem);">2D Truss Analysis</h1>
+            <p class="font-sans text-lg md:text-xl text-muted max-w-2xl">
                 Internal and external force analysis of members of a 2D truss structure.
             </p>
         </div>
     </header>
 
-    <!-- Details -->
-    <section class="py-24 px-4 md:px-12 bg-black grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="md:col-span-1">
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">PROJECT DATA</h3>
-            <div class="space-y-6">
-                <div><h4 class="font-bold text-white">Type</h4><p class="text-gray-400 text-sm">FEA & Hand Calculation</p></div>
-                <div><h4 class="font-bold text-white">Year</h4><p class="text-gray-400 text-sm">2024</p></div>
-                <div><h4 class="font-bold text-white">Software</h4><p class="text-gray-400 text-sm">Ansys, Python, Excel</p></div>
+    <!-- Spec Sheet -->
+    <section class="py-16 px-4 md:px-12 bg-dark section-rule">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/5">
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Type</h4>
+                <p class="font-display text-lg font-bold">FEA & Hand Calc.</p>
+            </div>
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Year</h4>
+                <p class="font-display text-lg font-bold">2024</p>
+            </div>
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Software</h4>
+                <p class="font-display text-lg font-bold">Ansys, Python, Excel</p>
             </div>
         </div>
-        <div class="md:col-span-2">
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE CHALLENGE</h3>
-            <p class="font-sans text-lg text-gray-300 leading-relaxed mb-8">
-                To accurately predict the failure points of a bridge truss design under varying load conditions. The goal was to verify manual calculations against FEA simulation results.
-            </p>
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE SOLUTION</h3>
-            <p class="font-sans text-lg text-gray-300 leading-relaxed">
-                A method of joints analysis was performed manually and verified using Python scripts. The structure was then modeled in Ansys to simulate stress distribution and deformation, confirming a safety factor of 2.5.
-            </p>
+    </section>
+
+    <!-- Challenge / Solution -->
+    <section class="py-24 px-4 md:px-12 bg-black">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
+            <div class="md:col-span-1">
+                <div class="sticky top-24">
+                    <span class="font-mono text-accent text-sm">&sect;01</span>
+                    <h2 class="font-display text-3xl uppercase font-bold mt-2">Brief</h2>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h3 class="font-mono text-muted text-xs mb-4 border-b border-white/10 pb-2">THE CHALLENGE</h3>
+                    <p class="font-sans text-lg text-muted leading-relaxed">
+                        To accurately predict the failure points of a bridge truss design under varying load conditions. The goal was to verify manual calculations against FEA simulation results.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-xs mb-4 border-b border-white/10 pb-2">THE SOLUTION</h3>
+                    <p class="font-sans text-lg text-muted leading-relaxed">
+                        A method of joints analysis was performed manually and verified using Python scripts. The structure was then modeled in Ansys to simulate stress distribution and deformation, confirming a safety factor of 2.5.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Methodology -->
-    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
+    <section class="py-24 px-4 md:px-12 bg-dark section-rule">
         <div class="max-w-4xl mx-auto">
-            <h3 class="font-mono text-accent text-xs mb-6">METHODOLOGY</h3>
-            <h2 class="font-display text-3xl uppercase font-bold mb-8">Analytical vs. Numerical Approach</h2>
-            
+            <div class="flex items-baseline gap-3 mb-10">
+                <span class="font-mono text-accent text-sm">&sect;02</span>
+                <h2 class="font-display text-3xl uppercase font-bold">Analytical vs. Numerical</h2>
+            </div>
+
             <div class="space-y-12">
                 <div>
-                    <h4 class="font-bold text-white text-xl mb-4">1. Hand Calculations</h4>
-                    <p class="font-sans text-gray-300 leading-relaxed mb-4">
+                    <h4 class="font-display font-bold text-xl mb-4">1. Hand Calculations</h4>
+                    <p class="font-sans text-muted leading-relaxed mb-6">
                         Using the Method of Joints, we isolated each node of the truss to solve for member forces. The structure was assumed to be statically determinate. We calculated reaction forces at the supports and propagated them through the web members.
                     </p>
-                    <div class="p-6 border border-white/10 bg-black/50 font-mono text-xs text-gray-400">
-                        <p>ΣFx = 0  //  ΣFy = 0  //  ΣM = 0</p>
-                        <p class="mt-2">Max Tension: Member AB (+4500 N)</p>
-                        <p>Max Compression: Member CD (-5200 N)</p>
+                    <div class="p-6 border border-white/10 bg-black font-mono text-sm text-muted">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <p class="text-[10px] text-muted/60 uppercase tracking-widest mb-1">Equilibrium</p>
+                                <p class="text-white">&#x3A3;Fx = 0 &nbsp; &#x3A3;Fy = 0 &nbsp; &#x3A3;M = 0</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-muted/60 uppercase tracking-widest mb-1">Max Tension</p>
+                                <p class="text-accent">Member AB: +4500 N</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-muted/60 uppercase tracking-widest mb-1">Max Compression</p>
+                                <p class="text-accent">Member CD: -5200 N</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="font-bold text-white text-xl mb-4">2. FEA Simulation (Ansys)</h4>
-                    <p class="font-sans text-gray-300 leading-relaxed mb-4">
+                    <h4 class="font-display font-bold text-xl mb-4">2. FEA Simulation (Ansys)</h4>
+                    <p class="font-sans text-muted leading-relaxed">
                         The geometry was imported into Ansys Workbench. We applied a mesh size of 5mm using tetrahedral elements. Boundary conditions were set to fixed support at the left node and roller support at the right node.
                     </p>
                 </div>
@@ -118,38 +157,27 @@
     </section>
 
     <!-- Gallery -->
-    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
-        <h3 class="font-display text-3xl uppercase font-bold mb-12">Visual Analysis</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section class="py-24 px-4 md:px-12 bg-black section-rule">
+        <div class="flex items-baseline gap-3 mb-12">
+            <span class="font-mono text-accent text-sm">&sect;03</span>
+            <h2 class="font-display text-3xl uppercase font-bold">Visual Analysis</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="group relative overflow-hidden border border-white/10">
-                <img src="./fea-stress.png" alt="Von Mises Stress" class="w-full h-80 object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                <img src="./fea-stress.png" alt="Von Mises stress distribution showing peak stress at member CD" class="w-full h-80 object-cover img-desat">
                 <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
-                    <p class="font-mono text-white">Von Mises Stress Distribution</p>
+                    <p class="font-mono text-sm text-white">Von Mises Stress Distribution</p>
                 </div>
             </div>
             <div class="group relative overflow-hidden border border-white/10">
-                <img src="./fea-displacement.png" alt="Total Deformation" class="w-full h-80 object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                <img src="./fea-displacement.png" alt="Total deformation plot showing maximum displacement at midspan" class="w-full h-80 object-cover img-desat">
                 <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
-                    <p class="font-mono text-white">Total Deformation Plot</p>
+                    <p class="font-mono text-sm text-white">Total Deformation Plot</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const cursor = document.getElementById('cursor');
-            const hoverElements = document.querySelectorAll('.cursor-hover');
-            let mouseX = 0, mouseY = 0;
-            document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-            gsap.ticker.add(() => { cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`; });
-            hoverElements.forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
-        });
-    </script>
+    <footer class="py-12 text-center font-mono text-xs text-muted/50 section-rule">&copy; 2025 M. Akshaf</footer>
 </body>
 </html>

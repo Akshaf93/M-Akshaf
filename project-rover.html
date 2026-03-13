@@ -4,144 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efx IAM3D R.O.V.E.R | M. Akshaf</title>
+    <meta name="description" content="$1000 USD winning 3D-printed rover for the IAM3D Competition. Rocker-bogie suspension, topology optimization, and modular design.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
-    
-   <script>
+
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        black: '#0a0a0a',
-                        dark: '#111111',
-                        white: '#f4f4f5',
-                        accent: '#3b82f6', 
+                        black: '#0b1120',
+                        dark: '#0f172a',
+                        surface: '#1e293b',
+                        white: '#f1f5f9',
+                        muted: '#94a3b8',
+                        accent: '#e87400',
+                        'accent-dim': '#c26200',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Oswald', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    
+
     <style>
-        body { background-color: #0a0a0a; color: #f4f4f5; cursor: none; }
-        #cursor {
-            position: fixed; top: 0; left: 0; width: 12px; height: 12px;
-            background-color: white; border-radius: 50%; pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s;
-            mix-blend-mode: exclusion;
+        body { background-color: #0b1120; color: #f1f5f9; }
+        .ruled-bg {
+            background-image: linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+            background-size: 100% 2rem;
         }
-        #cursor.hovered { width: 60px; height: 60px; background-color: transparent; border: 1px solid white; }
-        @media (hover: none) {
-            body { cursor: auto; }
-            #cursor { display: none; }
-        }
+        .section-rule { border-top: 1px solid rgba(148, 163, 184, 0.1); }
+        .img-desat { filter: saturate(0.7) brightness(0.9); transition: filter 0.5s ease; }
+        .img-desat:hover { filter: saturate(1) brightness(1); }
         model-viewer { width: 100%; height: 100%; display: block; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body>
-    <div id="cursor"></div>
+<body class="ruled-bg">
 
     <!-- Nav -->
     <nav class="fixed top-0 w-full p-6 z-50 flex justify-between items-center mix-blend-difference">
-        <a href="index.html" class="font-display font-bold text-xl tracking-wider cursor-hover hover:text-accent transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i> BACK TO HOME
+        <a href="index.html" class="font-display font-bold text-sm tracking-wider hover:text-accent transition-colors flex items-center gap-2">
+            <i class="fas fa-arrow-left text-xs"></i> BACK TO HOME
         </a>
+        <span class="font-mono text-xs text-muted hidden md:block">01 / 04</span>
     </nav>
 
     <!-- Hero -->
-    <header class="h-[70vh] relative overflow-hidden flex items-end p-4 md:p-12 border-b border-white/10">
-        <img src="./main.PNG" class="absolute inset-0 w-full h-full object-cover opacity-40" alt="Rover">
+    <header class="h-[70vh] relative overflow-hidden flex items-end p-4 md:p-12 section-rule">
+        <img src="./main.PNG" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Efx IAM3D rover on test terrain">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
         <div class="relative z-10 max-w-5xl">
             <p class="font-mono text-accent text-sm mb-4">01 — MECHATRONICS</p>
-            <h1 class="font-display text-6xl md:text-8xl font-bold uppercase leading-none mb-6">Efx IAM3D R.O.V.E.R</h1>
-            <p class="font-sans text-xl text-gray-300 max-w-2xl">
-                1000$ USD Winning 3D Printed R.O.V.E.R for IAM3d Competition 2025-26.
+            <h1 class="font-display text-5xl md:text-8xl font-bold uppercase leading-none mb-6" style="font-size: clamp(2.5rem, 8vw, 6rem);">Efx IAM3D R.O.V.E.R</h1>
+            <p class="font-sans text-lg md:text-xl text-muted max-w-2xl">
+                $1000 USD Winning 3D Printed R.O.V.E.R for IAM3D Competition 2025-26.
             </p>
         </div>
     </header>
 
-    <!-- Details -->
-    <section class="py-24 px-4 md:px-12 bg-black grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="md:col-span-1">
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">PROJECT DATA</h3>
-            <div class="space-y-6">
-                <div><h4 class="font-bold text-white">Role</h4><p class="text-gray-400 text-sm">Lead Engineer</p></div>
-                <div><h4 class="font-bold text-white">Timeline</h4><p class="text-gray-400 text-sm">2 Months</p></div>
-                <div><h4 class="font-bold text-white">Tech Stack</h4><p class="text-gray-400 text-sm">SolidWorks, 3D Printing, Arduino, Microcontroller, Electronics</p></div>
+    <!-- Spec Sheet -->
+    <section class="py-16 px-4 md:px-12 bg-dark section-rule">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Role</h4>
+                <p class="font-display text-lg font-bold">Lead Engineer</p>
+            </div>
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Timeline</h4>
+                <p class="font-display text-lg font-bold">2 Months</p>
+            </div>
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Software</h4>
+                <p class="font-display text-lg font-bold">SolidWorks</p>
+            </div>
+            <div class="bg-dark p-6">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-2">Fabrication</h4>
+                <p class="font-display text-lg font-bold">3D Print + Arduino</p>
             </div>
         </div>
-        <div class="md:col-span-2">
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE CHALLENGE</h3>
-            <p class="font-sans text-lg text-gray-300 leading-relaxed mb-8">
-                The objective was to design a fully functional, 3D-printable rover capable of traversing uneven terrain while adhering to strict budget and weight constraints. The design needed to be modular for easy repair and assembly.
-            </p>
-            <h3 class="font-mono text-gray-500 text-xs mb-8 border-t border-white/10 pt-4">THE SOLUTION</h3>
-            <p class="font-sans text-lg text-gray-300 leading-relaxed">
-                We utilized a rocker-bogie suspension system adapted for 3D printing tolerances. The chassis was optimized using topology optimization to reduce weight without sacrificing structural integrity.
-            </p>
+    </section>
+
+    <!-- Challenge / Solution -->
+    <section class="py-24 px-4 md:px-12 bg-black">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
+            <div class="md:col-span-1">
+                <div class="sticky top-24">
+                    <span class="font-mono text-accent text-sm">&sect;01</span>
+                    <h2 class="font-display text-3xl uppercase font-bold mt-2">Brief</h2>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h3 class="font-mono text-muted text-xs mb-4 border-b border-white/10 pb-2">THE CHALLENGE</h3>
+                    <p class="font-sans text-lg text-muted leading-relaxed">
+                        The objective was to design a fully functional, 3D-printable rover capable of traversing uneven terrain while adhering to strict budget and weight constraints. The design needed to be modular for easy repair and assembly.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-xs mb-4 border-b border-white/10 pb-2">THE SOLUTION</h3>
+                    <p class="font-sans text-lg text-muted leading-relaxed">
+                        We utilized a rocker-bogie suspension system adapted for 3D printing tolerances. The chassis was optimized using topology optimization to reduce weight without sacrificing structural integrity.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- 3D Model Viewer -->
-    <section class="py-24 px-4 md:px-12 bg-dark border-t border-white/10">
-        <h3 class="font-display text-4xl uppercase font-bold mb-12">Interactive Model</h3>
+    <section class="py-24 px-4 md:px-12 bg-dark section-rule">
+        <div class="flex items-baseline gap-3 mb-12">
+            <span class="font-mono text-accent text-sm">&sect;02</span>
+            <h2 class="font-display text-3xl uppercase font-bold">Interactive Model</h2>
+        </div>
         <div class="w-full h-[60vh] bg-black/50 border border-white/10 rounded-lg overflow-hidden relative">
-            <model-viewer src="rover_model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1.46" exposure="1">
+            <model-viewer src="rover_model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" shadow-intensity="1.46" exposure="1">
                 <div class="progress-bar hide" slot="progress-bar">
                     <div class="update-bar"></div>
                 </div>
             </model-viewer>
-
-
             <div class="absolute bottom-4 left-4 pointer-events-none">
                 <p class="font-mono text-xs text-accent">DRAG TO ROTATE // SCROLL TO ZOOM</p>
             </div>
         </div>
     </section>
 
-    <!-- Extended Process -->
-    <section class="py-24 px-4 md:px-12 bg-black border-t border-white/10">
+    <!-- Process -->
+    <section class="py-24 px-4 md:px-12 bg-black section-rule">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
-                <h3 class="font-mono text-accent text-xs mb-6">THE PROCESS</h3>
-                <h2 class="font-display text-3xl uppercase font-bold mb-6">Iterative Design & Prototyping</h2>
-                <p class="font-sans text-gray-300 leading-relaxed mb-6">
+                <div class="flex items-baseline gap-3 mb-8">
+                    <span class="font-mono text-accent text-sm">&sect;03</span>
+                    <h2 class="font-display text-3xl uppercase font-bold">Iterative Design & Prototyping</h2>
+                </div>
+                <p class="font-sans text-muted leading-relaxed mb-6">
                     The development process began with a rough sketch of the rocker-bogie mechanism, which is famous for its ability to traverse obstacles twice the height of the wheel diameter. We moved quickly into SolidWorks to create a parametric model.
                 </p>
-                <p class="font-sans text-gray-300 leading-relaxed">
+                <p class="font-sans text-muted leading-relaxed">
                     Over 4 iterations were printed. The first version suffered from layer delamination at the suspension joints. We adjusted print orientation and increased wall thickness to 4 perimeters, solving the structural issues without adding metal reinforcement.
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-4">
-                <img src="./process-1.jpg" alt="CAD Draft" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
-                <img src="./process-2.jpg" alt="3D Printing" class="w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
-                <img src="./process-3.jpg" alt="Assembly" class="col-span-2 w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500 border border-white/10">
+                <img src="./process-1.jpg" alt="Initial CAD draft of rocker-bogie mechanism" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-2.jpg" alt="3D printing first prototype iteration" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-3.jpg" alt="Final assembly of rover chassis and suspension" class="col-span-2 w-full h-64 object-cover img-desat border border-white/10">
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center font-mono text-xs text-gray-600 border-t border-white/10">M. Akshaf @2025</footer>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const cursor = document.getElementById('cursor');
-            const hoverElements = document.querySelectorAll('.cursor-hover');
-            let mouseX = 0, mouseY = 0;
-            document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-            gsap.ticker.add(() => { cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`; });
-            hoverElements.forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-            });
-        });
-    </script>
+    <footer class="py-12 text-center font-mono text-xs text-muted/50 section-rule">&copy; 2025 M. Akshaf</footer>
 </body>
 </html>
