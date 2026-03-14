@@ -21,12 +21,12 @@
             theme: {
                 extend: {
                     colors: {
-                        black: '#090909',
-                        dark: '#111111',
-                        surface: '#1a1a1a',
+                        black: '#121212',
+                        dark: '#1a1a1a',
+                        surface: '#242424',
                         white: '#f0f0f0',
-                        muted: '#777777',
-                        accent: '#e87400',
+                        muted: '#999999',
+                        accent: '#3b82f6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -40,7 +40,7 @@
 
     <style>
         body {
-            background-color: #090909;
+            background-color: #121212;
             color: #f0f0f0;
             overflow-x: hidden;
         }
@@ -53,39 +53,47 @@
 
         /* Card image: darken + desaturate so any bg blends into the card */
         .card-img {
-            filter: brightness(0.45) saturate(0.6);
+            filter: brightness(0.75) saturate(0.85);
             transition: filter 0.6s ease, transform 0.6s ease;
         }
         .card:hover .card-img {
-            filter: brightness(0.6) saturate(0.85);
+            filter: brightness(0.9) saturate(1);
             transform: scale(1.04);
         }
 
         /* Section divider */
         .divider {
-            border-top: 1px solid rgba(255,255,255,0.07);
+            border-top: 1px solid rgba(255,255,255,0.12);
         }
 
         /* Subtle grid bg */
         .grid-bg {
             background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
             background-size: 4rem 4rem;
         }
 
         html { scroll-behavior: smooth; }
+
+        /* Nav background on scroll */
+        .nav-scrolled {
+            background-color: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
     </style>
 </head>
 <body>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full px-6 py-5 z-50 flex justify-between items-center">
+    <nav id="main-nav" class="fixed top-0 w-full px-6 py-5 z-50 flex justify-between items-center transition-all duration-300">
         <div class="flex flex-col">
             <span class="font-display font-bold text-lg tracking-wider">M. AKSHAF</span>
             <span class="font-mono text-[10px] text-muted tracking-widest">MECHANICAL ENGINEER</span>
         </div>
-        <a href="mailto:email@example.com" class="font-mono text-xs border border-white/15 px-5 py-2.5 hover:bg-accent hover:border-accent hover:text-black transition-all duration-300 hidden md:block">
+        <a href="mailto:email@example.com" class="font-mono text-xs border border-white/20 px-5 py-2.5 hover:bg-accent hover:border-accent hover:text-white transition-all duration-300 hidden md:block">
             AVAILABLE FOR HIRE
         </a>
     </nav>
@@ -97,9 +105,9 @@
         <img src="./rover.png"
              alt=""
              aria-hidden="true"
-             class="absolute inset-0 w-full h-full object-cover opacity-[0.12]"
+             class="absolute inset-0 w-full h-full object-cover opacity-[0.35]"
              fetchpriority="high">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
 
         <!-- Content -->
         <div class="relative z-10">
@@ -125,6 +133,31 @@
         </div>
     </header>
 
+    <!-- About -->
+    <section class="px-6 md:px-12 py-24 divider">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl">
+            <div class="md:col-span-1">
+                <h2 class="font-display text-3xl md:text-4xl uppercase font-bold">About</h2>
+            </div>
+            <div class="md:col-span-2">
+                <p class="font-sans text-lg leading-relaxed text-white/85 mb-6">
+                    I am a mechanical engineer based in Islamabad, Pakistan, specializing in mechatronics, structural analysis, and drive system design. My work sits at the intersection of CAD-driven design and hands-on prototyping — from topology-optimized 3D-printed parts to planetary gearboxes tested in the field.
+                </p>
+                <p class="font-sans text-base leading-relaxed text-muted">
+                    Winner of the IAM3D Competition ($1,000 USD). Proficient in SolidWorks, Ansys, and Python-based simulation workflows. Currently open to opportunities in product development, R&D, and design engineering roles.
+                </p>
+                <div class="flex items-center gap-6 mt-10">
+                    <a href="mailto:email@example.com" class="font-mono text-xs text-accent hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fas fa-envelope text-sm"></i> GET IN TOUCH
+                    </a>
+                    <a href="#" class="font-mono text-xs text-muted hover:text-accent transition-colors flex items-center gap-2">
+                        <i class="fab fa-linkedin text-sm"></i> LINKEDIN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Selected Works -->
     <section id="work" class="px-6 md:px-12 py-24 divider">
@@ -143,7 +176,7 @@
             <!-- Project 1: Rover -->
             <a href="project-rover.html" class="card block group relative h-[55vh] overflow-hidden bg-dark">
                 <img src="./rover.png" alt="Efx IAM3D competition rover" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute inset-0 flex flex-col justify-end p-8">
                     <p class="font-mono text-[10px] text-accent tracking-widest mb-3">01 — MECHATRONICS</p>
                     <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Efx IAM3D<br>R.O.V.E.R</h3>
@@ -159,7 +192,7 @@
             <!-- Project 2: Truss -->
             <a href="project-truss.html" class="card block group relative h-[55vh] overflow-hidden bg-dark">
                 <img src="./Truss-2.png" alt="2D truss axial force analysis in Ansys" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute inset-0 flex flex-col justify-end p-8">
                     <p class="font-mono text-[10px] text-accent tracking-widest mb-3">02 — STRUCTURAL ANALYSIS</p>
                     <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">2D Truss<br>Analysis</h3>
@@ -175,7 +208,7 @@
             <!-- Project 3: Transmission (wide) -->
             <a href="project-transmission.html" class="card block group relative h-[45vh] md:col-span-2 overflow-hidden bg-dark">
                 <img src="./1.png" alt="SolidWorks assembly of planetary gearbox and drive arms" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute inset-0 flex flex-col justify-end p-8">
                     <p class="font-mono text-[10px] text-accent tracking-widest mb-3">03 — DRIVE SYSTEM</p>
                     <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Transmission & Gears</h3>
@@ -191,7 +224,7 @@
             <!-- Project 4: Field Test -->
             <a href="project-field-test.html" class="card block group relative h-[45vh] overflow-hidden bg-dark">
                 <img src="./2.png" alt="SolidWorks assembly of dump truck for field testing" class="card-img absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div class="absolute inset-0 flex flex-col justify-end p-8">
                     <p class="font-mono text-[10px] text-accent tracking-widest mb-3">04 — TESTING</p>
                     <h3 class="font-display text-3xl md:text-4xl uppercase font-bold leading-tight">Field<br>Validation</h3>
@@ -202,10 +235,10 @@
             </a>
 
             <!-- Archive -->
-            <div class="group relative h-[45vh] border border-white/5 flex flex-col justify-center items-center bg-surface hover:bg-accent transition-colors duration-500 cursor-pointer">
+            <div class="group relative h-[45vh] border border-white/10 flex flex-col justify-center items-center bg-surface hover:bg-accent transition-colors duration-500 cursor-pointer">
                 <i class="fas fa-arrow-right text-3xl mb-4 -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
                 <h3 class="font-display text-2xl uppercase font-bold">View Archive</h3>
-                <p class="font-mono text-[10px] mt-2 text-muted group-hover:text-black/60 tracking-widest">ALL CAD FILES</p>
+                <p class="font-mono text-[10px] mt-2 text-muted group-hover:text-white/70 tracking-widest">ALL CAD FILES</p>
             </div>
 
         </div>
@@ -221,17 +254,17 @@
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
 
-            <div class="md:col-span-2 p-8 border border-white/5 bg-dark">
+            <div class="md:col-span-2 p-8 border border-white/10 bg-dark">
                 <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">SOFTWARE</h3>
                 <div class="flex flex-wrap gap-x-6 gap-y-3">
                     <span class="text-2xl font-bold font-display uppercase">SolidWorks</span>
-                    <span class="text-2xl font-bold font-display uppercase text-muted/40">Fusion 360</span>
+                    <span class="text-2xl font-bold font-display uppercase text-muted/60">Fusion 360</span>
                     <span class="text-2xl font-bold font-display uppercase">Ansys</span>
-                    <span class="text-2xl font-bold font-display uppercase text-muted/40">Python</span>
+                    <span class="text-2xl font-bold font-display uppercase text-muted/60">Python</span>
                 </div>
             </div>
 
-            <div class="p-8 border border-white/5 bg-dark">
+            <div class="p-8 border border-white/10 bg-dark">
                 <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">MANUFACTURING</h3>
                 <ul class="font-sans text-sm text-muted space-y-3">
                     <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>3D Printing (SLA/FDM)</li>
@@ -240,7 +273,7 @@
                 </ul>
             </div>
 
-            <div class="p-8 border border-white/5 bg-dark flex flex-col justify-between">
+            <div class="p-8 border border-white/10 bg-dark flex flex-col justify-between">
                 <h3 class="font-mono text-accent text-[10px] tracking-widest mb-6">CONNECT</h3>
                 <div class="flex gap-5 text-2xl">
                     <a href="#" class="text-muted hover:text-accent transition-colors"><i class="fab fa-linkedin"></i></a>
@@ -253,8 +286,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 text-center font-mono text-[10px] text-muted/40 divider tracking-widest">
-        &copy; 2025 M. AKSHAF
+    <footer class="py-12 text-center font-mono text-[10px] text-muted/60 divider tracking-widest">
+        &copy; 2026 M. AKSHAF
     </footer>
 
     <!-- Animations -->
@@ -284,6 +317,16 @@
                     }
                 });
             });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
         });
     </script>
 </body>

@@ -17,12 +17,12 @@
             theme: {
                 extend: {
                     colors: {
-                        black: '#090909',
-                        dark: '#111111',
-                        surface: '#1a1a1a',
+                        black: '#121212',
+                        dark: '#1a1a1a',
+                        surface: '#242424',
                         white: '#f0f0f0',
-                        muted: '#777777',
-                        accent: '#e87400',
+                        muted: '#999999',
+                        accent: '#3b82f6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -35,10 +35,10 @@
     </script>
 
     <style>
-        body { background-color: #090909; color: #f0f0f0; }
-        .divider { border-top: 1px solid rgba(255,255,255,0.07); }
-        .hero-img { filter: brightness(0.35); }
-        .img-desat { filter: saturate(0.7) brightness(0.85); transition: filter 0.5s ease; }
+        body { background-color: #121212; color: #f0f0f0; }
+        .divider { border-top: 1px solid rgba(255,255,255,0.12); }
+        .hero-img { filter: brightness(0.65); }
+        .img-desat { filter: saturate(0.85) brightness(0.95); transition: filter 0.5s ease; }
         .img-desat:hover { filter: saturate(1) brightness(1); }
         html { scroll-behavior: smooth; }
     </style>
@@ -56,7 +56,7 @@
     <!-- Hero -->
     <header class="h-[70vh] min-h-[400px] relative overflow-hidden flex items-end px-6 md:px-12 pb-12 divider">
         <img src="./Truss-2.png" class="hero-img absolute inset-0 w-full h-full object-cover" alt="Ansys axial force distribution on 2D truss members">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
         <div class="relative z-10 max-w-4xl">
             <p class="font-mono text-accent text-[10px] tracking-widest mb-4">02 — STRUCTURAL ANALYSIS</p>
             <h1 class="font-display font-bold uppercase leading-none mb-5" style="font-size: clamp(2.5rem, 8vw, 5.5rem);">2D Truss Analysis</h1>
@@ -68,7 +68,7 @@
 
     <!-- Spec Sheet -->
     <section class="px-6 md:px-12 py-12 bg-dark divider">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/5">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/10">
             <div class="bg-dark p-5">
                 <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Type</h4>
                 <p class="font-display text-base font-bold">FEA & Hand Calc.</p>
@@ -95,13 +95,13 @@
             </div>
             <div class="md:col-span-2 space-y-12">
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE CHALLENGE</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE CHALLENGE</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         To accurately predict the failure points of a bridge truss design under varying load conditions. The goal was to verify manual calculations against FEA simulation results.
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE SOLUTION</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE SOLUTION</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         A method of joints analysis was performed manually and verified using Python scripts. The structure was then modeled in Ansys to simulate stress distribution and deformation, confirming a safety factor of 2.5.
                     </p>
@@ -122,7 +122,7 @@
                     <p class="font-sans text-muted leading-relaxed mb-6">
                         Using the Method of Joints, we isolated each node of the truss to solve for member forces. The structure was assumed to be statically determinate. We calculated reaction forces at the supports and propagated them through the web members.
                     </p>
-                    <div class="p-6 border border-white/5 bg-black font-mono text-sm text-muted">
+                    <div class="p-6 border border-white/10 bg-black font-mono text-sm text-muted">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                                 <p class="text-[10px] text-muted/60 uppercase tracking-widest mb-1">Equilibrium</p>
@@ -155,21 +155,21 @@
         <span class="font-mono text-accent text-xs tracking-widest">&sect;03</span>
         <h2 class="font-display text-3xl uppercase font-bold mt-2 mb-12">Visual Analysis</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="group relative overflow-hidden border border-white/5">
+            <div class="group relative overflow-hidden border border-white/10">
                 <img src="./fea-stress.png" alt="Von Mises stress distribution showing peak stress at member CD" class="w-full h-80 object-cover img-desat">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/70 to-transparent w-full">
                     <p class="font-mono text-sm text-white">Von Mises Stress Distribution</p>
                 </div>
             </div>
-            <div class="group relative overflow-hidden border border-white/5">
+            <div class="group relative overflow-hidden border border-white/10">
                 <img src="./fea-displacement.png" alt="Total deformation plot showing maximum displacement at midspan" class="w-full h-80 object-cover img-desat">
-                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black/70 to-transparent w-full">
                     <p class="font-mono text-sm text-white">Total Deformation Plot</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center font-mono text-[10px] text-muted/40 divider tracking-widest">&copy; 2025 M. AKSHAF</footer>
+    <footer class="py-12 text-center font-mono text-[10px] text-muted/60 divider tracking-widest">&copy; 2026 M. AKSHAF</footer>
 </body>
 </html>

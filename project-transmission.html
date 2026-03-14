@@ -17,12 +17,12 @@
             theme: {
                 extend: {
                     colors: {
-                        black: '#090909',
-                        dark: '#111111',
-                        surface: '#1a1a1a',
+                        black: '#121212',
+                        dark: '#1a1a1a',
+                        surface: '#242424',
                         white: '#f0f0f0',
-                        muted: '#777777',
-                        accent: '#e87400',
+                        muted: '#999999',
+                        accent: '#3b82f6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -35,10 +35,10 @@
     </script>
 
     <style>
-        body { background-color: #090909; color: #f0f0f0; }
-        .divider { border-top: 1px solid rgba(255,255,255,0.07); }
-        .hero-img { filter: brightness(0.35); }
-        .img-desat { filter: saturate(0.7) brightness(0.85); transition: filter 0.5s ease; }
+        body { background-color: #121212; color: #f0f0f0; }
+        .divider { border-top: 1px solid rgba(255,255,255,0.12); }
+        .hero-img { filter: brightness(0.65); }
+        .img-desat { filter: saturate(0.85) brightness(0.95); transition: filter 0.5s ease; }
         .img-desat:hover { filter: saturate(1) brightness(1); }
         html { scroll-behavior: smooth; }
     </style>
@@ -56,7 +56,7 @@
     <!-- Hero -->
     <header class="h-[70vh] min-h-[400px] relative overflow-hidden flex items-end px-6 md:px-12 pb-12 divider">
         <img src="./1.png" class="hero-img absolute inset-0 w-full h-full object-cover" alt="SolidWorks assembly of planetary gearbox with radial drive arms">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
         <div class="relative z-10 max-w-4xl">
             <p class="font-mono text-accent text-[10px] tracking-widest mb-4">03 — DRIVE SYSTEM</p>
             <h1 class="font-display font-bold uppercase leading-none mb-5" style="font-size: clamp(2.5rem, 8vw, 5.5rem);">Transmission & Gears</h1>
@@ -68,7 +68,7 @@
 
     <!-- Spec Sheet -->
     <section class="px-6 md:px-12 py-12 bg-dark divider">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/5">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/10">
             <div class="bg-dark p-5">
                 <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Component</h4>
                 <p class="font-display text-base font-bold">Planetary Gearbox</p>
@@ -95,13 +95,13 @@
             </div>
             <div class="md:col-span-2 space-y-12">
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE CHALLENGE</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE CHALLENGE</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         The rover required high torque to climb 45-degree inclines, but the available motors were high-speed/low-torque. Space within the wheel hub was extremely limited.
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE SOLUTION</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE SOLUTION</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         Designed a compact planetary gear system that fits inside the wheel rim. The involute gear profiles were modified for 3D printing to reduce friction and backlash.
                     </p>
@@ -120,7 +120,7 @@
                     Standard involute gears often bind when 3D printed due to the "elephant foot" effect and general tolerance issues. For this planetary gearbox, we modified the pressure angle to 25 degrees to increase tooth strength and applied a negative offset to the tooth thickness.
                 </p>
                 <!-- Gear Specs Table -->
-                <div class="border border-white/5 divide-y divide-white/5">
+                <div class="border border-white/10 divide-y divide-white/10">
                     <div class="grid grid-cols-2">
                         <div class="p-4 bg-surface/50">
                             <p class="font-mono text-[10px] text-muted uppercase tracking-widest">Module</p>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
             </div>
-            <div class="h-96 border border-white/5 relative overflow-hidden">
+            <div class="h-96 border border-white/10 relative overflow-hidden">
                 <img src="./gear-exploded.png" alt="Exploded view of planetary gearbox showing sun gear, planet gears, carrier, and ring gear" class="w-full h-full object-cover img-desat">
             </div>
         </div>
@@ -166,12 +166,12 @@
         <span class="font-mono text-accent text-xs tracking-widest">&sect;03</span>
         <h2 class="font-display text-3xl uppercase font-bold mt-2 mb-12">Fabrication Gallery</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <img src="./gear-print-1.jpg" alt="3D printed planet gears fresh off print bed" class="w-full h-64 object-cover border border-white/5 img-desat">
-            <img src="./gear-print-2.jpg" alt="Post-processed gear surfaces after sanding" class="w-full h-64 object-cover border border-white/5 img-desat">
-            <img src="./gear-assembly.jpg" alt="Assembled planetary gearbox fitted in wheel hub" class="w-full h-64 object-cover border border-white/5 img-desat">
+            <img src="./gear-print-1.jpg" alt="3D printed planet gears fresh off print bed" class="w-full h-64 object-cover border border-white/10 img-desat">
+            <img src="./gear-print-2.jpg" alt="Post-processed gear surfaces after sanding" class="w-full h-64 object-cover border border-white/10 img-desat">
+            <img src="./gear-assembly.jpg" alt="Assembled planetary gearbox fitted in wheel hub" class="w-full h-64 object-cover border border-white/10 img-desat">
         </div>
     </section>
 
-    <footer class="py-12 text-center font-mono text-[10px] text-muted/40 divider tracking-widest">&copy; 2025 M. AKSHAF</footer>
+    <footer class="py-12 text-center font-mono text-[10px] text-muted/60 divider tracking-widest">&copy; 2026 M. AKSHAF</footer>
 </body>
 </html>

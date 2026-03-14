@@ -18,12 +18,12 @@
             theme: {
                 extend: {
                     colors: {
-                        black: '#090909',
-                        dark: '#111111',
-                        surface: '#1a1a1a',
+                        black: '#121212',
+                        dark: '#1a1a1a',
+                        surface: '#242424',
                         white: '#f0f0f0',
-                        muted: '#777777',
-                        accent: '#e87400',
+                        muted: '#999999',
+                        accent: '#3b82f6',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -36,10 +36,10 @@
     </script>
 
     <style>
-        body { background-color: #090909; color: #f0f0f0; }
-        .divider { border-top: 1px solid rgba(255,255,255,0.07); }
-        .hero-img { filter: brightness(0.35); }
-        .img-desat { filter: saturate(0.7) brightness(0.85); transition: filter 0.5s ease; }
+        body { background-color: #121212; color: #f0f0f0; }
+        .divider { border-top: 1px solid rgba(255,255,255,0.12); }
+        .hero-img { filter: brightness(0.65); }
+        .img-desat { filter: saturate(0.85) brightness(0.95); transition: filter 0.5s ease; }
         .img-desat:hover { filter: saturate(1) brightness(1); }
         model-viewer { width: 100%; height: 100%; display: block; }
         html { scroll-behavior: smooth; }
@@ -58,7 +58,7 @@
     <!-- Hero -->
     <header class="h-[70vh] min-h-[400px] relative overflow-hidden flex items-end px-6 md:px-12 pb-12 divider">
         <img src="./main.PNG" class="hero-img absolute inset-0 w-full h-full object-cover" alt="Efx IAM3D rover side profile">
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
         <div class="relative z-10 max-w-4xl">
             <p class="font-mono text-accent text-[10px] tracking-widest mb-4">01 — MECHATRONICS</p>
             <h1 class="font-display font-bold uppercase leading-none mb-5" style="font-size: clamp(2.5rem, 8vw, 5.5rem);">Efx IAM3D R.O.V.E.R</h1>
@@ -70,7 +70,7 @@
 
     <!-- Spec Sheet -->
     <section class="px-6 md:px-12 py-12 bg-dark divider">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10">
             <div class="bg-dark p-5">
                 <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Role</h4>
                 <p class="font-display text-base font-bold">Lead Engineer</p>
@@ -101,13 +101,13 @@
             </div>
             <div class="md:col-span-2 space-y-12">
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE CHALLENGE</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE CHALLENGE</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         The objective was to design a fully functional, 3D-printable rover capable of traversing uneven terrain while adhering to strict budget and weight constraints. The design needed to be modular for easy repair and assembly.
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/7 pb-2">THE SOLUTION</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE SOLUTION</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
                         We utilized a rocker-bogie suspension system adapted for 3D printing tolerances. The chassis was optimized using topology optimization to reduce weight without sacrificing structural integrity.
                     </p>
@@ -122,7 +122,7 @@
             <span class="font-mono text-accent text-xs tracking-widest">&sect;02</span>
             <h2 class="font-display text-3xl uppercase font-bold mt-2">Interactive Model</h2>
         </div>
-        <div class="w-full h-[60vh] bg-black border border-white/5 rounded overflow-hidden relative">
+        <div class="w-full h-[60vh] bg-black border border-white/10 rounded overflow-hidden relative">
             <model-viewer src="rover_model.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" shadow-intensity="1.46" exposure="1">
                 <div class="progress-bar hide" slot="progress-bar">
                     <div class="update-bar"></div>
@@ -148,13 +148,13 @@
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <img src="./process-1.jpg" alt="Initial CAD draft of rocker-bogie mechanism" class="w-full h-64 object-cover img-desat border border-white/5">
-                <img src="./process-2.jpg" alt="3D printing first prototype iteration" class="w-full h-64 object-cover img-desat border border-white/5">
-                <img src="./process-3.jpg" alt="Final assembly of rover chassis and suspension" class="col-span-2 w-full h-64 object-cover img-desat border border-white/5">
+                <img src="./process-1.jpg" alt="Initial CAD draft of rocker-bogie mechanism" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-2.jpg" alt="3D printing first prototype iteration" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-3.jpg" alt="Final assembly of rover chassis and suspension" class="col-span-2 w-full h-64 object-cover img-desat border border-white/10">
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center font-mono text-[10px] text-muted/40 divider tracking-widest">&copy; 2025 M. AKSHAF</footer>
+    <footer class="py-12 text-center font-mono text-[10px] text-muted/60 divider tracking-widest">&copy; 2026 M. AKSHAF</footer>
 </body>
 </html>
