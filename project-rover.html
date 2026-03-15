@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Efx IAM3D R.O.V.E.R | M. Akshaf</title>
-    <meta name="description" content="$1000 USD winning 3D-printed rover for the IAM3D Competition. Rocker-bogie suspension, topology optimization, and modular design.">
+    <meta name="description" content="$1000 USD winning 3D-printed R.O.V.E.R. for the ASME IAM3D Competition. Track-driven design with 4 design iterations, custom scoop mechanism, and ESP32-based controls.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -63,7 +63,7 @@
             <p class="font-mono text-accent text-[10px] tracking-widest mb-4">01 — MECHATRONICS</p>
             <h1 class="font-display font-bold uppercase leading-none mb-5" style="font-size: clamp(2.5rem, 8vw, 5.5rem);">Efx IAM3D R.O.V.E.R</h1>
             <p class="font-sans text-lg text-muted max-w-xl">
-                $1000 USD Winning 3D Printed R.O.V.E.R for IAM3D Competition 2025-26.
+                $1000 USD Winning 3D Printed R.O.V.E.R for the <a href="https://www.asme.org" target="_blank" class="text-accent hover:underline">ASME</a> IAM3D Competition 2025-26.
             </p>
         </div>
     </header>
@@ -85,7 +85,7 @@
             </div>
             <div class="bg-dark p-5">
                 <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Fabrication</h4>
-                <p class="font-display text-base font-bold">3D Print + Arduino</p>
+                <p class="font-display text-base font-bold">3D Print + ESP32</p>
             </div>
         </div>
     </section>
@@ -101,15 +101,21 @@
             </div>
             <div class="md:col-span-2 space-y-12">
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE CHALLENGE</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE COMPETITION</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
-                        The objective was to design a fully functional, 3D-printable rover capable of traversing uneven terrain while adhering to strict budget and weight constraints. The design needed to be modular for easy repair and assembly.
+                        The <a href="https://www.asme.org" target="_blank" class="text-accent hover:underline">ASME</a> Innovative Additive Manufacturing 3D (IAM3D) Competition: Remote Operations Vehicle for the Excavation of Resources (R.O.V.E.R.) tasks university students to design an unmanned vehicle capable of gathering and depositing resources on an extraterrestrial landscape. The vehicle must fit within a 30.48 cm cube, be primarily 3D printed, and navigate a 2.43 m &times; 2.43 m sand course to excavate and deposit randomly placed resources into a central container &mdash; all controlled via FPV from an enclosed command center with no direct line of sight.
                     </p>
                 </div>
                 <div>
-                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE SOLUTION</h3>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">THE CHALLENGE</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
-                        We utilized a rocker-bogie suspension system adapted for 3D printing tolerances. The chassis was optimized using topology optimization to reduce weight without sacrificing structural integrity.
+                        The vehicle needed to traverse loose sand, pick up resources ranging from 1 cm to 10.16 cm in size, and deposit them reliably &mdash; all within strict size constraints and with a heavy scoring emphasis on additive manufacturing ratio. The sand terrain demanded high traction, the excavation required a robust scoop mechanism that could both lift and tilt, and the entire system had to be remotely operated with zero direct visibility.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">OUR APPROACH</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        We designed the entire rover from scratch over 4 design iterations, achieving a 1:1 additive manufacturing ratio. The chassis and drivetrain evolved from a wheeled configuration to a custom track system for superior sand traction. A lead-screw-driven scoop with a 4-bar linkage provides reliable excavation, while an ESP32-based control system with WiFi FPV keeps the electronics minimal and effective.
                     </p>
                 </div>
             </div>
@@ -139,18 +145,79 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
                 <span class="font-mono text-accent text-xs tracking-widest">&sect;03</span>
-                <h2 class="font-display text-3xl uppercase font-bold mt-2 mb-8">Iterative Design & Prototyping</h2>
+                <h2 class="font-display text-3xl uppercase font-bold mt-2 mb-8">Iterative Design</h2>
                 <p class="font-sans text-muted leading-relaxed mb-6">
-                    The development process began with a rough sketch of the rocker-bogie mechanism, which is famous for its ability to traverse obstacles twice the height of the wheel diameter. We moved quickly into SolidWorks to create a parametric model.
+                    The rover went through 4 major design iterations, each addressing failures and limitations discovered during testing. The first iteration used a wheeled drivetrain, but testing in loose sand revealed insufficient traction &mdash; the wheels would dig in and stall. We pivoted to a tracked drivetrain for all subsequent iterations.
+                </p>
+                <p class="font-sans text-muted leading-relaxed mb-6">
+                    The first track design used 4 individual links joined together with screws and plates. This proved overly complex to assemble and prone to binding. We redesigned the track as a single continuous link per side, significantly simplifying assembly and improving reliability.
                 </p>
                 <p class="font-sans text-muted leading-relaxed">
-                    Over 4 iterations were printed. The first version suffered from layer delamination at the suspension joints. We adjusted print orientation and increased wall thickness to 4 perimeters, solving the structural issues without adding metal reinforcement.
+                    The final design features a track contact length of 20 cm, track width of 7.6 cm, and ground clearance of 6 cm &mdash; optimized for stability and traction on the sand course.
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <img src="./process-1.jpg" alt="Initial CAD draft of rocker-bogie mechanism" class="w-full h-64 object-cover img-desat border border-white/10">
-                <img src="./process-2.jpg" alt="3D printing first prototype iteration" class="w-full h-64 object-cover img-desat border border-white/10">
-                <img src="./process-3.jpg" alt="Final assembly of rover chassis and suspension" class="col-span-2 w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-1.jpg" alt="Early wheeled iteration CAD model" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-2.jpg" alt="Track prototype 3D printed" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-3.jpg" alt="Final assembled rover with tracks and scoop" class="col-span-2 w-full h-64 object-cover img-desat border border-white/10">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mechanical Specs -->
+    <section class="py-24 px-6 md:px-12 bg-dark divider">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl">
+            <div class="md:col-span-1">
+                <div class="sticky top-24">
+                    <span class="font-mono text-accent text-xs tracking-widest">&sect;04</span>
+                    <h2 class="font-display text-3xl uppercase font-bold mt-2">Mechanical</h2>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">DRIVETRAIN</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        4WD tracked configuration using four Henkwell 24V DC motors (142 RPM no-load, 5.6 kgf&middot;cm stall torque, 1.5 kgf&middot;cm rated torque). The tracked system provides significantly better traction over loose sand compared to wheels, distributing the vehicle's weight over a larger contact area.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">SCOOP MECHANISM</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        The scoop is lifted using a NEMA 17 stepper motor coupled with a T8 threaded rod and lead screw, providing precise vertical positioning and enough holding force to keep the scoop raised under load. For tilting the scoop to dump resources, two MG996R servos drive a 4-bar linkage that multiplies torque for reliable operation.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">ADDITIVE MANUFACTURING</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        The rover achieved a 1:1 additive manufacturing ratio. The chassis, wheels, and track components were printed in PLA, while the scoop and stepper/lead-screw mounts were printed in PETG for its superior impact resistance and slight flexibility. All 3D printed parts are original designs created by the team.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Electronics -->
+    <section class="py-24 px-6 md:px-12 divider">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl">
+            <div class="md:col-span-1">
+                <div class="sticky top-24">
+                    <span class="font-mono text-accent text-xs tracking-widest">&sect;05</span>
+                    <h2 class="font-display text-3xl uppercase font-bold mt-2">Electronics</h2>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">CONTROL SYSTEM</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        An ESP32 microcontroller serves as the brain of the rover, communicating over WiFi with a custom control center GUI running on a phone. The drive motors are managed by 2&times; L298N dual H-bridge motor drivers (one per side for skid-steer control), and the NEMA 17 stepper is driven by an A4988 stepper motor driver.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">FPV SYSTEM</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        Since the competition requires fully remote operation from an enclosed command center with no direct line of sight, we mounted a phone inside the scoop area running IPCam over WiFi. The video feed streams to a laptop in the command booth, giving the operator a first-person view for navigating the course and scooping resources.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
