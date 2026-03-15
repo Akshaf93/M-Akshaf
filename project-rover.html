@@ -88,6 +88,24 @@
                 <p class="font-display text-base font-bold">3D Print + ESP32</p>
             </div>
         </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 mt-px">
+            <div class="bg-dark p-5">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Weight</h4>
+                <p class="font-display text-base font-bold">2.2 kg</p>
+            </div>
+            <div class="bg-dark p-5">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Battery</h4>
+                <p class="font-display text-base font-bold">4S LiPo</p>
+            </div>
+            <div class="bg-dark p-5">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">AM Ratio</h4>
+                <p class="font-display text-base font-bold">1:1 (100%)</p>
+            </div>
+            <div class="bg-dark p-5">
+                <h4 class="font-mono text-[10px] text-muted uppercase tracking-widest mb-1.5">Iterations</h4>
+                <p class="font-display text-base font-bold">4 Revisions</p>
+            </div>
+        </div>
     </section>
 
     <!-- Challenge / Solution -->
@@ -158,8 +176,9 @@
             </div>
             <div class="grid grid-cols-2 gap-3">
                 <img src="./process-1.jpg" alt="Early wheeled iteration CAD model" class="w-full h-64 object-cover img-desat border border-white/10">
-                <img src="./process-2.jpg" alt="Track prototype 3D printed" class="w-full h-64 object-cover img-desat border border-white/10">
-                <img src="./process-3.jpg" alt="Final assembled rover with tracks and scoop" class="col-span-2 w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-2.jpg" alt="First track design with 4 links" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-3.jpg" alt="Single-link track redesign" class="w-full h-64 object-cover img-desat border border-white/10">
+                <img src="./process-4.jpg" alt="Final assembled rover with tracks and scoop" class="w-full h-64 object-cover img-desat border border-white/10">
             </div>
         </div>
     </section>
@@ -176,20 +195,25 @@
             <div class="md:col-span-2 space-y-12">
                 <div>
                     <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">DRIVETRAIN</h3>
-                    <p class="font-sans text-base text-muted leading-relaxed">
-                        4WD tracked configuration using four Henkwell 24V DC motors (142 RPM no-load, 5.6 kgf&middot;cm stall torque, 1.5 kgf&middot;cm rated torque). The tracked system provides significantly better traction over loose sand compared to wheels, distributing the vehicle's weight over a larger contact area.
+                    <p class="font-sans text-base text-muted leading-relaxed mb-4">
+                        4WD tracked configuration using four Henkwell 24V DC motors (142 RPM no-load, 5.6 kgf&middot;cm stall torque, 1.5 kgf&middot;cm rated torque). The tracked system provides significantly better traction over loose sand compared to wheels, distributing the vehicle's 2.2 kg weight over a larger contact area.
                     </p>
+                    <img src="./drivetrain.jpg" alt="Track drivetrain close-up showing motors and sprockets" class="w-full h-48 object-cover img-desat border border-white/10">
                 </div>
                 <div>
                     <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">SCOOP MECHANISM</h3>
-                    <p class="font-sans text-base text-muted leading-relaxed">
+                    <p class="font-sans text-base text-muted leading-relaxed mb-4">
                         The scoop is lifted using a NEMA 17 stepper motor coupled with a T8 threaded rod and lead screw, providing precise vertical positioning and enough holding force to keep the scoop raised under load. For tilting the scoop to dump resources, two MG996R servos drive a 4-bar linkage that multiplies torque for reliable operation.
                     </p>
+                    <img src="./scoop-mechanism.jpg" alt="Scoop mechanism showing lead screw and 4-bar linkage" class="w-full h-48 object-cover img-desat border border-white/10">
                 </div>
                 <div>
                     <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">ADDITIVE MANUFACTURING</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed mb-4">
+                        The competition scoring is heavily weighted on the percentage of parts produced using additive manufacturing &mdash; the AM ratio directly determines a significant portion of the total score. Our rover achieved a 1:1 additive manufacturing ratio, meaning every non-exempt part (electronics, motors, fasteners, batteries, and wiring are exempt per the rules) was 3D printed by the team.
+                    </p>
                     <p class="font-sans text-base text-muted leading-relaxed">
-                        The rover achieved a 1:1 additive manufacturing ratio. The chassis, wheels, and track components were printed in PLA, while the scoop and stepper/lead-screw mounts were printed in PETG for its superior impact resistance and slight flexibility. All 3D printed parts are original designs created by the team.
+                        The chassis, drive wheels, and track components were printed in PLA for its rigidity and dimensional accuracy, while the scoop and stepper/lead-screw mounts were printed in PETG for its superior impact resistance and slight flexibility under load. All parts are original designs &mdash; the use of pre-existing designs is grounds for disqualification.
                     </p>
                 </div>
             </div>
@@ -209,7 +233,7 @@
                 <div>
                     <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">CONTROL SYSTEM</h3>
                     <p class="font-sans text-base text-muted leading-relaxed">
-                        An ESP32 microcontroller serves as the brain of the rover, communicating over WiFi with a custom control center GUI running on a phone. The drive motors are managed by 2&times; L298N dual H-bridge motor drivers (one per side for skid-steer control), and the NEMA 17 stepper is driven by an A4988 stepper motor driver.
+                        An ESP32 microcontroller serves as the brain of the rover, communicating over WiFi with a custom control center GUI running on a phone. The drive motors are managed by 2&times; L298N dual H-bridge motor drivers (one per side for skid-steer control), and the NEMA 17 stepper is driven by an A4988 stepper motor driver. The entire system is powered by a 4S LiPo battery, providing the 14.8V nominal voltage needed to drive the 24V motors at a usable speed while keeping the package compact and lightweight.
                     </p>
                 </div>
                 <div>
@@ -219,6 +243,52 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FEA & Design Report -->
+    <section class="py-24 px-6 md:px-12 bg-dark divider">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl">
+            <div class="md:col-span-1">
+                <div class="sticky top-24">
+                    <span class="font-mono text-accent text-xs tracking-widest">&sect;06</span>
+                    <h2 class="font-display text-3xl uppercase font-bold mt-2">Analysis &amp; Report</h2>
+                </div>
+            </div>
+            <div class="md:col-span-2 space-y-12">
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">FEA SIMULATION</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        Finite Element Analysis was performed on critical structural components in SolidWorks Simulation as part of the pre-competition design report. Stress analysis on the chassis frame, scoop, and lead-screw mounts validated that 3D printed parts could handle the expected loading conditions without failure, helping justify material choices (PLA vs PETG) and wall thicknesses before committing to print runs.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-mono text-muted text-[10px] tracking-widest mb-4 border-b border-white/[0.12] pb-2">DESIGN REPORT</h3>
+                    <p class="font-sans text-base text-muted leading-relaxed">
+                        A comprehensive design report was submitted as a pre-competition deliverable, including individual 2D CAD drawings for every part, full assembly drawings with bill of materials, exploded views, structural FEA results, Design for Manufacture and Assembly (DFMA) analysis, Design for Additive Manufacturing (DFAM) analysis, a complete record of all 4 design iterations with rationale, and testing documentation.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <img src="./fea-1.jpg" alt="FEA stress analysis on chassis frame" class="w-full h-56 object-cover img-desat border border-white/10">
+                    <img src="./fea-2.jpg" alt="FEA simulation on scoop under load" class="w-full h-56 object-cover img-desat border border-white/10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-24 px-6 md:px-12 divider">
+        <div class="mb-10">
+            <span class="font-mono text-accent text-xs tracking-widest">&sect;07</span>
+            <h2 class="font-display text-3xl uppercase font-bold mt-2">Gallery</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <img src="./gallery-1.jpg" alt="Rover front view" class="w-full h-64 object-cover img-desat border border-white/10">
+            <img src="./gallery-2.jpg" alt="Track system close-up" class="w-full h-64 object-cover img-desat border border-white/10">
+            <img src="./gallery-3.jpg" alt="Scoop mechanism detail" class="w-full h-64 object-cover img-desat border border-white/10">
+            <img src="./gallery-4.jpg" alt="Electronics and wiring layout" class="w-full h-64 object-cover img-desat border border-white/10">
+            <img src="./gallery-5.jpg" alt="3D printing process" class="w-full h-64 object-cover img-desat border border-white/10">
+            <img src="./gallery-6.jpg" alt="Rover on the competition sand course" class="w-full h-64 object-cover img-desat border border-white/10">
         </div>
     </section>
 
